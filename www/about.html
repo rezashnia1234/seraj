@@ -29,10 +29,15 @@
 				url = $(this).attr("rel");   
 				loadURL(url);
 			});
-
+			$('.link').click(function () {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    openExternal click');
+				url = $(this).attr("rel");   
+				loadURL(url);
+			});
 
 		}
 		function loadURL(url){
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    loadURL click');
 			navigator.app.loadUrl(url, { openExternal:true });
 			return false;
 		}
