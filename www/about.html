@@ -20,13 +20,21 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
 			//document.addEventListener("DOMContentLoaded", loaded, false);
+			onDeviceReady();
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
-			
+			$('.link').live('tap', function() {
+				url = $(this).attr("rel");   
+				loadURL(url);
+			});
 
 
+		}
+		function loadURL(url){
+			navigator.app.loadUrl(url, { openExternal:true });
+			return false;
 		}
 	</script>
 
@@ -41,14 +49,14 @@
 		<div id="top-top"><img src="images/about/top.png" style="width:100%;height:auto;z-index:1;margin-bottom:-6px;" ></div>
 		<div id="top-center">
 			<img src="images/about/about-center.png" style="width:100%;height:auto;z-index:1;margin-bottom:-6px;" >
-			<a href="http://www.serajfestival.ir/"><div id="festival-btn"></div></a>
+			<a href='#' class='link' rel="http://www.serajfestival.ir/"><div id="festival-btn"></div></a>
 		</div>
 		<div id="home-btn"><a href="index.html"><img src="images/about/home.png" style="width:100%;height:100%;" ></a></div>
 	</div>
 	<div id="bottom">
 		<div id="bottom-bottom">
 			<img src="images/about/bottom.png" style="width:auto;height:100%;z-index:1;margin-bottom:0px;" >
-			<a href="http://www.smgroup.ir"><div id="smgroup-btn"></div></a>
+			<a href='#' class='link' rel="http://www.smgroup.ir"><div id="smgroup-btn"></div></a>
 		</div>
 	</div>
 </body>
