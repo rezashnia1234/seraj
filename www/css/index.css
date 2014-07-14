@@ -2,22 +2,26 @@ body{background:#f2f2f2;}
 #left
 {
 	width:50%;/*46.875%;*/
-	height:100vh;
-	float:left;
+	height:100%;
 	margin:0;
 	padding:0;
 	background:#00afad;
 	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
 }
 #right
 {
 	width:50%;/*53.125%;*/
-	height:100vh;
-	float:right;
+	height:100%;
 	margin:0;
 	padding:0;
 	background:#f2f2f2;
 	overflow:hidden;
+	position:absolute;
+	top:0;
+	right:0;
 }
 #exit-btn
 {
@@ -44,7 +48,7 @@ body{background:#f2f2f2;}
 #left-bg
 {
 	left:0;
-	height:100vh;
+	height:100%;
 	max-width:100%;
 	position:absolute;
 	z-index:0;
@@ -52,7 +56,7 @@ body{background:#f2f2f2;}
 #left-center
 {
 	right:0;
-	height:100vh;
+	height:100%;
 	max-width:100%;
 	position:absolute;
 	z-index:0;
@@ -60,7 +64,7 @@ body{background:#f2f2f2;}
 #right-text
 {
 	right:calc(100% * 294 / 1600);
-	height:100vh;
+	height:100%;
 	max-width:100%;
 	position:absolute;
 	z-index:1;
