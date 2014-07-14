@@ -19,6 +19,23 @@
 			//document.addEventListener("deviceready", onDeviceReady, false);
 			//document.addEventListener("DOMContentLoaded", loaded, false);
 		}
+		function onDeviceReady() {
+			FastClick.attach(document.body);	
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
+			
+			if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+
+			} else {
+				$('#exit-btn').css({'display':'none'});
+			}
+			
+			console.log('SMGROUP :::::::::::::::::::::::::::::::::::: =  Device Name: '     + device.name     + '<br />' + 
+																		'Device PhoneGap: ' + device.phonegap + '<br />' + 
+																		'Device Platform: ' + device.platform + '<br />' + 
+																		'Device UUID: '     + device.uuid     + '<br />' + 
+																		'Device Version: '  + device.version  + '<br />';
+
+		}
 		function exit() {
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    exit command');
 			// Exit the app!
