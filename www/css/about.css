@@ -7,7 +7,7 @@ body{background:#f2f2f2;}
 	top:0;
 	right:0;
 	position:absolute;
-	width:calc(100vh * 80 / 1600);
+	width:78px;
 	z-index:1;
 }
 #top
@@ -43,7 +43,7 @@ body{background:#f2f2f2;}
 #top-top
 {
 	/*height:52.74%;*/
-	width:calc(100% * 1112 / 2560);
+	width:78px;
 	height:auto;
 	margin:0 auto;
 	padding:0;
