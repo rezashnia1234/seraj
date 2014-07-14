@@ -19,6 +19,11 @@
 			//document.addEventListener("deviceready", onDeviceReady, false);
 			//document.addEventListener("DOMContentLoaded", loaded, false);
 		}
+		function exit() {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    exit command');
+			// Exit the app!
+			navigator.app.exitApp();
+		}
 	</script>
 
 
@@ -29,7 +34,7 @@
 <body onload="init()">
 	<div id="temp"></div>
 	<div id="left">
-		<div id="exit-btn"><img src="images/index/exit.png" style="width:100%;height:100%;" ></div>
+		<div id="exit-btn" onclick="exit();"><img src="images/index/exit.png" style="width:100%;height:100%;" ></div>
 		<div id="info-btn"><img src="images/index/info.png" style="width:100%;height:100%;" ></div>
 		<div id="left-bg"><img src="images/index/left-bg.png" style="width:auto;height:100%;" ></div>
 		<div id="left-center"><img src="images/index/center.png" style="width:auto;height:100%;z-index:1;" ></div>
