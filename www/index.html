@@ -25,22 +25,13 @@
 			FastClick.attach(document.body);	
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			
-			if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-
-			} else {
+			if ( device.platform == 'iOS' ){//Android,iOS,win7=WinCE,win8=Win32NT
 				$('#exit-btn').css({'display':'none'});
 			}
-			
-			console.log('SMGROUP :::::::::::::::::::::::::::::::::::: =  Device Name: '     + device.name     + '<br />' + 
-																		'Device PhoneGap: ' + device.phonegap + '<br />' + 
-																		'Device Platform: ' + device.platform + '<br />' + 
-																		'Device UUID: '     + device.uuid     + '<br />' + 
-																		'Device Version: '  + device.version  + '<br />');
 
 		}
 		function exit() {
-			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    exit command');
-			// Exit the app!
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Exit the app! command');
 			navigator.app.exitApp();
 		}
 	</script>
@@ -54,18 +45,18 @@
 	<div id="temp"></div>
 	<div id="left">
 		<div id="exit-btn" onclick="exit();"><img src="images/index/exit.png" style="width:100%;height:100%;" ></div>
-		<div id="info-btn"><img src="images/index/info.png" style="width:100%;height:100%;" ></div>
+		<div id="info-btn"><a href="about.html"><img src="images/index/info.png" style="width:100%;height:100%;" ></a></div>
 		<div id="left-bg"><img src="images/index/left-bg.png" style="width:auto;height:100%;" ></div>
 		<div id="left-center"><img src="images/index/center.png" style="width:auto;height:100%;z-index:1;" ></div>
 	</div>
 	<div id="right">
 		<div id="right-text"><img src="images/index/right-text.png" style="width:auto;height:100%;" >
-			<div id="link-1th" class="menu-btn" ></div>
-			<div id="link-2th" class="menu-btn" ></div>
-			<div id="link-3th" class="menu-btn" ></div>
-			<div id="link-4th" class="menu-btn" ></div>
-			<div id="link-5th" class="menu-btn" ></div>
-			<div id="link-6th" class="menu-btn" ></div>
+			<a href="#"><div id="link-1th" class="menu-btn" ></div></a>
+			<a href="#"><div id="link-2th" class="menu-btn" ></div></a>
+			<a href="#"><div id="link-3th" class="menu-btn" ></div></a>
+			<a href="#"><div id="link-4th" class="menu-btn" ></div></a>
+			<a href="#"><div id="link-5th" class="menu-btn" ></div></a>
+			<a href="#"><div id="link-6th" class="menu-btn" ></div></a>
 		</div>
 	</div>
 </body>

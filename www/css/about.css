@@ -1,0 +1,83 @@
+body{background:#f2f2f2;}
+#home-btn
+{
+	cursor:pointer;
+	max-width:194px;
+	min-width:40px;
+	top:0;
+	right:0;
+	position:absolute;
+	width:calc(100vw * 194 / 2560);
+	z-index:1;
+}
+#top
+{
+	width:100%;
+	height:65vh;
+	margin:0;
+	padding:0;
+	background:#f2f2f2;
+	/*overflow:hidden;*/
+	z-index:1;
+}
+#bottom
+{
+	width:100%;
+	height:35vh;
+	margin:0;
+	padding:0;
+	background:#00afad;
+	overflow:hidden;
+	z-index:0;
+}
+#top-center
+{
+	/*height:52.74%;*/
+	width:100%;
+	bottom:0;
+	margin:0;
+	padding:0;
+	position:absolute;
+	z-index:1;
+}
+#top-top
+{
+	/*height:52.74%;*/
+	width:calc(100% * 1112 / 2560);
+	height:auto;
+	margin:0 auto;
+	padding:0;
+	z-index:0;
+}
+#bottom-bottom
+{
+	/*height:52.74%;*/
+	height:35vh;
+	margin:0 auto;
+	padding:0;
+	z-index:0;
+	text-align:center;
+}
+#smgroup-btn
+{
+	width:100%;
+	height:40%;
+	background:black;
+	opacity:0.0;
+	z-index:2;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+#festival-btn
+{
+	width:100%;
+	height:40%;
+	background:black;
+	opacity:0.0;
+	z-index:2;
+	position:absolute;
+	bottom:0;
+	left:0;
+	margin-bottom:-13px;
+}

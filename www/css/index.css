@@ -22,23 +22,23 @@ body{background:#f2f2f2;}
 #exit-btn
 {
 	cursor:pointer;
-	max-width:79px;
-	min-width:20px;
-	top:calc(100% * 52 / 1600);
-	left:calc(100% * 55 / 1600);
+	max-width:194px;
+	min-width:40px;
+	top:0;
+	left:0;
 	position:absolute;
-	width:calc(100% * 80 / 1600);
+	width:calc(100vw * 194 / 2560);
 	z-index:1;
 }
 #info-btn
 {
 	cursor:pointer;
-	max-width:88px;
-	min-width:20px;
-	bottom:calc(100% * 46 / 1600);
-	left:calc(100% * 50 / 1600);
+	max-width:194px;
+	min-width:40px;
+	bottom:0;
+	left:0;
 	position:absolute;
-	width:calc(100% * 89 / 1600);
+	width:calc(100vw * 194 / 2560);
 	z-index:1;
 }
 #left-bg
