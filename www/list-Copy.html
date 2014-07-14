@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>DataTables example - Default ordering (sorting)</title>
+	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/yekan.css">
+
+	<style type="text/css" class="init">
+
+	</style>
+	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script src="phonegap.js" type="text/javascript"></script>
+	<script src="js/jquery.md5.js" type="text/javascript"></script>
+	<script src="js/fastclick.js" type="text/javascript"></script>
+	<script src="js/jquery.blockUI.js" type="text/javascript"></script>
+	<script src="js/gapfile.js" type="text/javascript"></script>
+	<script src="js/download_cache.js" type="text/javascript"></script>
+	<script src="js/jquery.dataTables.min.js" type="text/javascript" language="javascript" ></script>
+	<script src="js/jquery.dotdotdot.min.js" type="text/javascript" language="javascript" ></script>
+
+	<script type="text/javascript" language="javascript" class="init">
+		image_list=new Array();
+		image_list_text="";
+		download_list=new Array();
+		download_list_text="";
+		articles = "";
+		Root_Path = "";
+////////////////////////////////////////////////////////////////////////////////////////////
+// START preloader :///////////////////////////////////////////////////////////////////////
+		function blockui() {
+			$.blockUI({
+				message: '<img src="images/preloader.gif"/>',
+				css: {
+					color: '#fff',
+					backgroundColor: '#fff',
+					border: 'none'
+				},
+				overlayCSS: {
+					backgroundColor: '#fff',
+					opacity: 1
+				}
+			});
+		}
+		function unblockui() {
+			$.unblockUI();
+		}
+// END preloader ://////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+		function GapFileSuccess(){
+				//alert("we have some no problem");
+		}
+		function StartMakeImageList(next) {
+			$.ajax({
+				url: window.localStorage.getItem('Root_Path')+'temp/articles_json.php',//'js/articles.json',
+				crossDomain: true,
+				jsonpCallback: 'cb',
+				dataType: 'jsonp',
+			})
+				.fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); alert('Failed to load data.'); })
+				.done(function (data) {
+					var output='';
+					articles = data;
+					$.each(data.posts,function(key,val) {
+						if(val.thumbnail!="")
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    GetSavedFile +' + val.thumbnail);
+							GetSavedFile(val.thumbnail, "temp", $.md5(val.thumbnail)  );
+						}
+						else
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    GetSavedFile no image /id=' + val.id);
+						}
+					});
+					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END GetSavedFile');
+					next();
+			});			
+		}
+		function MakeDataTableContent(next) {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    ASK FOR SRART DOWNLOAD');
+			StartDownload();
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END ASK FOR SRART DOWNLOAD');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    START MakeDataTableContent');
+			image_list_text = window.localStorage.getItem('image_list_text');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    image_list_text : ' +image_list_text);
+			image_list = image_list_text.split('; -,');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    image_list : ' +image_list);
+			var thumbnail='';
+			var output='';
+			$.each(articles.posts,function(key,val) {
+				if(val.thumbnail)
+				{
+					thumbnail = is_url_in_array(val.thumbnail,image_list);
+				} 
+				else
+				{
+					thumbnail = "images/blank.png";
+				}
+				output += '<tr><td class="c1 c_list" ><a href="news_content.html?id=' + val.id + '">' + '<img src="' + thumbnail + '"  width="75" height="92" /></a></td>';
+				output += '<td class="c2 c_list" ><a href="news_content.html?id=' + val.id + '">' + val.title + '</a></td>';
+				output += '<td class="c3 c_list" ><a href="news_content.html?id=' + val.id + '">' + val.excerpt + '</a></td>';
+				output += '</tr>';
+				/*
+				var tempDiv = document.createElement("tempDiv");
+				tempDiv.innerHTML = val.excerpt;
+				$("a",tempDiv).remove();
+				var excerpt = tempDiv.innerHTML;	
+				*/
+			});
+
+			$('.dataTable-tbody').html(output);
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END MakeDataTableContent');
+			next();
+		}
+		function DrawDataTable(next) {
+			$('.c2').dotdotdot();
+			$('.c3').dotdotdot();
+			$('#dataTable-list').dataTable( {
+			        "oLanguage": {
+			            "sProcessing": "درحال پردازش اطلاعات",
+			            "sLengthMenu": "نمایش _MENU_ مطلب در هر صفحه",
+			            "sZeroRecords": "درکمال تاسف ، هیچ مطلبی یافت نشد",
+			            "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ مطلب",
+			            "sInfoEmpty": "هیچ گزینه ای یافت نشد",
+			            "sSearch": "جستجو",
+			            "sInfoFiltered": "(مطالب گزیده شده از مجموع  _MAX_ عدد)",
+						"oPaginate": {
+							"sFirst":    "اولین",
+							"sPrevious": "قبلی",
+							"sNext":     "بعدی",
+							"sLast":     "آخرین"
+						}
+			        },
+			        "aLengthMenu": [[4,10, 25, 50, -1], [4,10, 25, 50, "همه"]],
+					"fnDrawCallback" : function(oSettings) {
+						// Update the element
+						unblockui();
+						//next();
+					},
+			} );
+		}
+		//function StartDownload(next) {
+		function StartDownload() {
+			download_list_text = window.localStorage.getItem('download_list_text');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    download_list2 : ' + download_list_text);
+			if(download_list_text){
+				//var networkState = navigator.connection.type;
+				//if (networkState == Connection.NONE) {
+
+				//} else {
+					download_list = download_list_text.split('; -,');
+					download_list = unique_array(download_list);
+					$.each( download_list, function( i, val ){
+						DownloadFile(val, "temp", $.md5(val)  );
+						//alert(val);
+						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    ask for DownloadFile : ' + val);
+					});
+				//}
+			}
+			//next();
+		}
+		function init() {			
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
+			document.addEventListener("deviceready", onDeviceReady, false);
+
+
+			//onDeviceReady();
+		}
+		function onDeviceReady() {
+			FastClick.attach(document.body);
+			window.localStorage.setItem('image_list_text',"");
+			window.localStorage.setItem('download_list_text',"");
+			
+			$('#temp').queue(StartMakeImageList).delay( 1500 ).queue(MakeDataTableContent).queue(DrawDataTable);//.queue(StartDownload);//.delay( 1500 ).queue(StartShowList).queue(unblockui).queue(StartDownload);
+		}
+
+	</script>
+</head>
+<body onload="init()">
+	<script>blockui();</script>
+	<div id="temp"></div>
+
+	<div class="container">
+		<br/><br/><br/>
+		<a href="index.html" >BBBBBBBBBBBBBBBBB</a>
+		<br/><br/><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.c_list {
+  /*display: inline;*/
+  display: block;
+  direction:rtl;
+}
+.c1{
+	float:right;
+}
+.c2 {
+  height: 20px;
+  width: auto;
+}
+.c3 {
+  height: 60px;
+  overflow: hidden;
+  width: auto;
+}
+*{
+	/*font-family:web_Yekan,tahoma !important;*/
+	font-size:13px;
+}
+a,a:visited{text-decoration:none;color:blue;}
+.container{padding:20px;}
+/*.dataTables_length{display: none;}*/
+</style>
+
+
+
+<table id="dataTable-list" class="display" cellspacing="0" width="100%">
+    <thead style="display:none;">
+        <tr>
+            <th>image</th>
+            <th>title</th>
+            <th>description</th>
+        </tr>
+    </thead>
+
+ 
+    <tbody class="dataTable-tbody">
+
+
+
+
+
+
+		</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+</body>
+</html>
+<!--///////////////
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
+        </tr>
+        <tr>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
+        </tr>
+-->
+

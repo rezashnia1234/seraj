@@ -1,0 +1,86 @@
+body{background:#f2f2f2;}
+#left
+{
+	width:50%;/*46.875%;*/
+	height:100vh;
+	float:left;
+	margin:0;
+	padding:0;
+	background:#00afad;
+	overflow:hidden;
+}
+#right
+{
+	width:50%;/*53.125%;*/
+	height:100vh;
+	float:right;
+	margin:0;
+	padding:0;
+	background:#f2f2f2;
+	overflow:hidden;
+}
+#exit-btn
+{
+	cursor:pointer;
+	max-width:79px;
+	min-width:20px;
+	top:calc(100% * 52 / 1600);
+	left:calc(100% * 55 / 1600);
+	position:absolute;
+	width:calc(100% * 80 / 1600);
+	z-index:1;
+}
+#info-btn
+{
+	cursor:pointer;
+	max-width:88px;
+	min-width:20px;
+	bottom:calc(100% * 46 / 1600);
+	left:calc(100% * 50 / 1600);
+	position:absolute;
+	width:calc(100% * 89 / 1600);
+	z-index:1;
+}
+#left-bg
+{
+	left:0;
+	height:100vh;
+	max-width:100%;
+	position:absolute;
+	z-index:0;
+}
+#left-center
+{
+	right:0;
+	height:100vh;
+	max-width:100%;
+	position:absolute;
+	z-index:0;
+}
+#right-text
+{
+	right:calc(100% * 294 / 1600);
+	height:100vh;
+	max-width:100%;
+	position:absolute;
+	z-index:1;
+}
+.menu-btn
+{
+	width:80%;
+	height:calc(100% * 133 / 1600);
+	position:absolute;
+	left:0;
+	top:calc(100% * 596 / 1600);
+	background:black;
+	opacity:0.0;
+	cursor:pointer;
+	border:1px solid red;
+	z-index:1;
+}
+#link-1th{top:calc(100% * 596 / 1600);}
+#link-2th{top:calc(100% * 729 / 1600);}
+#link-3th{top:calc(100% * 862 / 1600);}
+#link-4th{top:calc(100% * 995 / 1600);}
+#link-5th{top:calc(100% * 1128 / 1600);}
+#link-6th{top:calc(100% * 1261 / 1600);}
