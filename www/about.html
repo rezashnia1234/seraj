@@ -25,7 +25,7 @@
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
-			$('.link').live('tap', function() {
+			$('.link').live('click', function() {
 				url = $(this).attr("rel");   
 				loadURL(url);
 			});
