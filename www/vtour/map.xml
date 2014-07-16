@@ -1,0 +1,181 @@
+<krpano version="1.0.8">
+<!-- 
+
+
+ -->     
+
+	<plugin name="mapRadarBACK"  url="skin/blank.png"  keep="true"  
+	        align="lefttop" handcursor="false" 
+	        scalechildren="flase"
+            width="241" 
+            height="244"
+            zorder="120"
+            maskchildren="false"
+            x="0"
+            y="0"
+            />
+
+
+	<plugin name="mapRadar" url="skin/map.png" keep="true"
+	        align="lefttop" handcursor="false" 
+	        scalechildren="true"
+            width="241" 
+            height="244"
+            zorder="121"
+            maskchildren="true"
+            x="16"
+            y="16"
+            parent="mapRadarBACK"
+            />
+
+
+	<plugin name="mapBackTopRight" url="skin/mapBack-top-right.png" keep="true"  
+	        align="lefttop" x="10"  y="10" handcursor="true" 
+	        scalechildren="true"
+	        maskchildren="true"
+            width="115" 
+            height="115"
+            parent="mapRadarBACK"
+            />
+
+	<plugin name="mapBackLeftBottom" url="skin/mapBack-bottom-left.png" keep="true"  
+	        align="bottomright" x="0"  y="0" handcursor="true" 
+	        scalechildren="true"
+	        maskchildren="true"
+            width="115" 
+            height="84"
+            parent="mapRadarBACK"
+
+            />
+
+
+
+<action name="mapRadarzoomin">
+	mul(newwidth,get(plugin[mapRadar].width),%1);
+	tween(plugin[mapRadar].width, get(newwidth));
+	mul(newheight,get(plugin[mapRadar].height),%1);
+	tween(plugin[mapRadar].height, get(newheight));
+
+	mul(newwidth,get(plugin[mapRadarBACK].width),%1);
+	tween(plugin[mapRadarBACK].width, get(newwidth));
+	mul(newheight,get(plugin[mapRadarBACK].height),%1);
+	tween(plugin[mapRadarBACK].height, get(newheight));
+</action>
+<action name="mapRadarzoomout">
+	div(newwidth,get(plugin[mapRadar].width),%1);
+	tween(plugin[mapRadar].width, get(newwidth));
+	div(newheight,get(plugin[mapRadar].height),%1);
+	tween(plugin[mapRadar].height, get(newheight));
+
+	div(newwidth,get(plugin[mapRadarBACK].width),%1);
+	tween(plugin[mapRadarBACK].width, get(newwidth));
+	div(newheight,get(plugin[mapRadarBACK].height),%1);
+	tween(plugin[mapRadarBACK].height, get(newheight));
+</action>
+
+
+	<plugin name="mapRadarzoomin" url="skin/zoomin.png" keep="true"  
+	        align="lefttop" x="17"  y="15" handcursor="true" 
+	        scalechildren="true"
+	        maskchildren="true"
+            width="20" 
+            height="21"
+            parent="mapRadarBACK"
+		    zorder="300"
+		    onhover="mapRadarzoomin(1.1);"
+            />
+	<plugin name="mapRadarzoomout" url="skin/zoomout.png" keep="true"  
+	        align="lefttop" x="38"  y="15" handcursor="true" 
+	        scalechildren="true"
+	        maskchildren="true"
+            width="20" 
+            height="21"
+            parent="mapRadarBACK"
+		    zorder="300"
+		    onhover="mapRadarzoomout(1.1);"
+            />
+
+
+
+    <!-- activated hotpot -->
+    <plugin name="activespot" url="skin/mappointactive.png" keep="true" align="center" edge="center" visible="false" zorder="3" />
+
+    <!-- radar plugin, set heading with "plugin[radar].heading" -->
+    <plugin name="radar"
+	        url="%SWFPATH%/plugins/radar.swf"
+	        alturl="%SWFPATH%/plugins/radar.js"
+	        zorder="1"
+	        keep="true"
+	        heading="0"
+	        parent="mapRadar"
+
+	        align="lefttop"
+	        edge="center"
+	        x="0" y="0"
+	        linecolor="0"
+	        fillcolor="0xFF0000"
+	        scale="0.6"
+	        visible="false"
+	        editmode="true"
+	        />
+    
+
+	<!-- activatespot action, 
+        tween(plugin[mapRadar].alpha,1);
+        set(plugin[mapRadar].enabled,true);
+
+	     - this action has two arguments:
+	       - %1 = the current spot
+	       - %2 = the current radar heading
+	-->
+	<action name="activatespotRadar">
+		set(plugin[activespot].parent, plugin[%1]);
+		set(plugin[activespot].visible, true);
+		
+		copy(plugin[radar].x, plugin[%1].x);
+		copy(plugin[radar].y, plugin[%1].y);
+		
+		set(plugin[radar].visible, true);
+		set(plugin[radar].heading, %2);
+	</action>
+	<action name="showRadar">
+        tween(plugin[mapRadar].alpha,0.85);
+        set(plugin[mapRadar].enabled,true);
+	</action>
+
+
+	<!-- load and update map actions -->
+	<action name="update_map_spotRadar">
+		plugin[mapRadar].activatespot(%1);
+		plugin[mapRadar].pantospot(%1);
+		loadscene(%1, null, MERGE, BLEND(1));
+	</action>
+
+
+
+
+
+    <plugin name="NAMEEEEEEEEEEEEEEEEEE" url="skin/mappoint.png" keep="true" parent="mapRadar" align="lefttop" edge="center"  zorder="2"
+    	x="162"
+    	y="100"
+		onhover="showtext(NAMEEEEEEEEEEEEEEEEEE);"
+    	onclick="update_map_spotRadar(get(name));update_map_spot(get(name));"
+    	/>			
+    <plugin name="NAMEEEEEEEEEEEEEEEEEE" url="skin/mappoint.png" keep="true" parent="mapRadar" align="lefttop" edge="center"  zorder="2"
+    	x="192"
+    	y="82"
+		onhover="showtext(NAMEEEEEEEEEEEEEEEEEE);"
+    	onclick="update_map_spotRadar(get(name));update_map_spot(get(name));"
+    	/>	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+</krpano>

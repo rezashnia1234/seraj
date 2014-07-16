@@ -1,0 +1,264 @@
+<krpano version="1.16" title="Virtual Tour" onstart="startup();" showerrors="true" logkey="true">
+	<include url="%SWFPATH%/contro-normal.xml" />
+	<control movetocursor="vector" />
+	<control mousetype="moveto" />
+	<control keybaccelerate="0.5" />
+	<lensflareset name="default" url="%SWFPATH%/skin/krpano_default_flares.jpg">
+		<flare name="n0" pixsize="128" pixupos="  0" pixvpos="  0" color="0xffffef" pos="0.000" scale="0.100" />
+		<flare name="n1" pixsize=" 64" pixupos="128" pixvpos="128" color="0x060606" pos="-0.100" scale="0.110" />
+		<flare name="n2" pixsize=" 64" pixupos="192" pixvpos="128" color="0x555f64" pos="0.200" scale="0.020" />
+		<flare name="n3" pixsize="128" pixupos="  0" pixvpos="128" color="0x240a00" pos="0.300" scale="0.050" />
+		<flare name="n4" pixsize=" 64" pixupos="192" pixvpos="128" color="0x144422" pos="0.400" scale="0.020" />
+		<flare name="n5" pixsize=" 64" pixupos="128" pixvpos="192" color="0x143c40" pos="0.600" scale="0.050" />
+		<flare name="n6" pixsize=" 64" pixupos="128" pixvpos="128" color="0x354500" pos="0.800" scale="0.012" />
+		<flare name="n7" pixsize="128" pixupos="  0" pixvpos="128" color="0x483925" pos="1.100" scale="0.050" />
+		<flare name="n8" pixsize=" 64" pixupos="192" pixvpos="128" color="0x10303f" pos="1.500" scale="0.060" />
+		<flare name="n9" pixsize="128" pixupos="  0" pixvpos="128" color="0x665544" pos="1.700" scale="0.050" />
+	</lensflareset>
+	<textstyle name="DEFAULT" font="tahoma" fontsize="12" bold="false"
+			   textcolor="0"
+			   background="true" backgroundcolor="0xFFFFFF" border="true" bordercolor="0"
+			   alpha="1" blendmode="layer" effect="glow(0xFFFFFF,0.85,4,4);dropshadow(2,45,0x000000,4,1);"
+			   origin="cursor" edge="bottom" textalign="center" xoffset="0" yoffset="-3" showtime="0.1"
+			   />
+<!--
+    <plugin
+		name="panoControl"
+		devices="flash"
+		url="%SWFPATH%/plugins/gPanoControl.swf"
+		align="topleft" x="10" y="10"
+		keep="true"
+		alpha=".5"
+		zorder="1"
+		hovercolor="0x526CC2"
+		hovercolorstrength="0.4"
+		onover="tween(plugin[panoControl].alpha,1.0);"
+		onout="tween(plugin[panoControl].alpha,.5,0.1);"
+		heading="0"
+     />
+-->
+	<autorotate enabled="true"
+	            waittime="8.0" 
+	            speed="-3.0" 
+	            horizon="0.0" 
+	            tofov="120.0" 
+	            />
+
+	<action name="startup">
+		set(IsMapOpen,true);
+		set(autorotate.enabled,'true');
+		set(autorotate.waittime,8);
+		set(IsAutoRotate,true);
+		
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+		
+		<!-- build thumbnails when there is more than one scene (remove the line below to remove the thumbnails) -->
+		if(scene.count GT 1, buildthumbs(); );
+	</action>
+<!--
+/////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+===========================================================START SCENES=========================================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////////////////
+-->
+
+	
+	<scene name="scene_3_sphere" title="3_sphere" onstart="action(startsceneACT);" thumburl="panos/3_sphere.tiles/thumb.jpg" lat="" lng="" heading="">
+		<action name="startsceneACT">
+			//action(activatespotRadar,scene_3_sphere, 0); 
+			//set(plugin[radar].heading, 0);
+			//set(plugin[panoControl].heading,0);
+			
+			set(plugin[play].alpha,0);
+			set(plugin[tolaTime].alpha,0);
+			set(plugin[volume].alpha,0);
+			//hotspot[videospot].stop();
+			//action(pausevideo);
+			
+			set(plugin[MapIcon].alpha,1);
+			set(plugin[MapIcon].enabled,true);
+			set(plugin[Littelplant-icon].alpha,1);
+			set(plugin[Littelplant-icon].enabled,true);
+			set(plugin[rotate-icon].alpha,1);
+			set(plugin[rotate-icon].enabled,true);
+		</action>
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/3_sphere.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/3_sphere.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/3_sphere.tiles/mobile_%s.jpg" />
+			</mobile>
+			<mobile devices="iPad+Retina">
+				<cube url="panos/3_sphere.tiles/ipad3_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_4_sphere" title="4_sphere" onstart="action(startsceneACT);" thumburl="panos/4_sphere.tiles/thumb.jpg" lat="" lng="" heading="">
+		<action name="startsceneACT">
+			//action(activatespotRadar,scene_4_sphere, 0); 
+			//set(plugin[radar].heading, 0);
+			//set(plugin[panoControl].heading,0);
+			
+			set(plugin[play].alpha,0);
+			set(plugin[tolaTime].alpha,0);
+			set(plugin[volume].alpha,0);
+			//hotspot[videospot].stop();
+			//action(pausevideo);
+			
+			set(plugin[MapIcon].alpha,1);
+			set(plugin[MapIcon].enabled,true);
+			set(plugin[Littelplant-icon].alpha,1);
+			set(plugin[Littelplant-icon].enabled,true);
+			set(plugin[rotate-icon].alpha,1);
+			set(plugin[rotate-icon].enabled,true);
+		</action>
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/4_sphere.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/4_sphere.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/4_sphere.tiles/mobile_%s.jpg" />
+			</mobile>
+			<mobile devices="iPad+Retina">
+				<cube url="panos/4_sphere.tiles/ipad3_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+
+<!--
+/////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=============================================================END SCENES=========================================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////////////////
+-->
+	
+	<action name="calc_pos_from_hfov_yaw_pitch_roll">
+	  div(hfov,%1,57.295779);
+	  div(yaw,%2,-57.295779);
+	  div(pitch,%3,57.295779);
+	  div(roll,%4,-57.295779);
+	  mul(hfov,0.5);Math.tan(hfov);mul(width,hfov,1000);set(height,'prop');
+	  Math.cos(ch,yaw);Math.sin(sh,yaw);
+	  Math.cos(ca,pitch);Math.sin(sa,pitch);
+	  Math.cos(cb,roll);Math.sin(sb,roll);
+	  mul(m0,ca,ch);
+	  mul(tmp,cb,sa);mul(tmp,ch);mul(tmp2,sb,sh);add(m3,tmp,tmp2);
+	  mul(m4,cb,ca);
+	  mul(tmp,cb,sa);mul(tmp,sh);mul(tmp2,sb,ch);sub(m5n,tmp,tmp2);mul(m5n,-1);
+	  mul(tmp,sb,sa);mul(tmp,ch);mul(tmp2,cb,sh);sub(m6n,tmp,tmp2);mul(m6n,-1);
+	  Math.atan2(yaw,m6n,m0);
+	  Math.atan2(roll,m5n,m4);
+	  Math.asin(pitch,m3);
+	  mul(ath,yaw,57.295779);
+	  mul(atv,pitch,57.295779);
+	  mul(rotate,roll,57.295779);
+	</action>
+	<!-- thumbnail actions begin (remove the 'buildthumbs()' call in the onstart event to remove the thumbs) -->
+	<action name="buildthumbs">
+		if(%1 != NEXT, set(i,0));
+		if(i LT scene.count,
+			copy(thumb, scene[get(i)].thumburl);
+			txtadd(thumbname,'thumb_',get(i));
+			addplugin(get(thumbname));
+			set(plugin[get(thumbname)].url, get(thumb));
+			set(plugin[get(thumbname)].keep, true);
+			set(plugin[get(thumbname)].align, rightbottom);
+			set(plugin[get(thumbname)].width,  40);
+			set(plugin[get(thumbname)].height, 40);
+			mul(plugin[get(thumbname)].x, i,3);
+			mul(plugin[get(thumbname)].y, i,3);
+			add(plugin[get(thumbname)].x, 6);
+			add(plugin[get(thumbname)].y, 104);
+			copy(plugin[get(thumbname)].xsmall, plugin[get(thumbname)].x);
+			copy(plugin[get(thumbname)].ysmall, plugin[get(thumbname)].y);
+			add(plugin[get(thumbname)].zorder, 100, i);
+			set(plugin[get(thumbname)].effect, glow(0xFFFFFF,1.0,2,10000));
+			set(plugin[get(thumbname)].jsborder, '1px solid #FFFFFF');
+			copy(plugin[get(thumbname)].thumbpos, i);
+			set(plugin[get(thumbname)].linkedscene, get(scene[get(i)].name) );
+			set(plugin[get(thumbname)].onclick, openthumbs() );
+			inc(i);
+			buildthumbs(NEXT);
+		  );
+	</action>
+
+	<action name="openthumb">
+		if(%2 != NEXT,
+			set(pos,0);
+			copy(curpos, plugin[%1].thumbpos);
+			set(xdst, 0);
+			set(ydst, 0);
+		  );
+
+		if(pos LT curpos,
+			inc(pos);
+			inc(ydst,90);
+			sub(ymax, stageheight, 100);
+			if(ydst GT ymax, inc(xdst,90);set(ydst,0); );
+			openthumb(%1,NEXT);
+		  ,
+			add(xdst,10);
+			add(ydst,10);
+			tween(plugin[%1].x, get(xdst) );
+			tween(plugin[%1].y, get(ydst) );
+			tween(plugin[%1].width, 80);
+			tween(plugin[%1].height, 80);
+		  );
+	</action>
+
+	<action name="closethumb">
+		tween(plugin[%1].x, get(plugin[%1].xsmall));
+		tween(plugin[%1].y, get(plugin[%1].ysmall));
+		tween(plugin[%1].width, 40);
+		tween(plugin[%1].height, 40);
+	</action>
+
+	<action name="openthumbs">
+		if(%1 != NEXT,
+			set(i,0);
+			set(events.onclick, set(events.onclick,null); delayedcall(0.1, closethumbs() ); );
+		  );
+
+		if(i LT scene.count,
+			txtadd(thumbname,'thumb_',get(i));
+			openthumb(get(thumbname));
+			set(plugin[get(thumbname)].onclick, set(events.onclick,null); closethumbs(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); );
+			inc(i);
+			openthumbs(NEXT);
+		  );
+	</action>
+
+	<action name="closethumbs">
+		if(%1 != NEXT, set(i,0));
+		if(i LT scene.count,
+			txtadd(thumbname,'thumb_',get(i));
+			closethumb(get(thumbname));
+			set(plugin[get(thumbname)].onclick, openthumbs() );
+			inc(i);
+			closethumbs(NEXT);
+		  );
+	</action>
+	<!-- thumbnail actions end -->
+</krpano>

@@ -1,0 +1,23 @@
+<krpano version="1.0.8">
+
+	<events onloadcomplete="delayedcall(20, if(plugin[introimage], hideintroimage() ); ); set(events.onloadcomplete,null);" />
+	
+	
+	<plugin name="introimage"
+	        url="skin/help.png"
+	        align="center"
+	        onloaded="set(alpha,0); tween(alpha,1.0);"
+	        onclick="hideintroimage();"
+	        keep="true"
+	        zorder="10000"
+	        />
+	
+	<action name="hideintroimage">
+		if(plugin[introimage].enabled,
+			set(plugin[introimage].enabled,false);
+			tween(plugin[introimage].alpha, 0.0);
+		  );
+	</action>
+<!-- tween(plugin[introimage].alpha, 0.0, 0.5, default, removeplugin(introimage)); -->
+
+</krpano>

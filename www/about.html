@@ -30,7 +30,10 @@
 		function loadURL(url){
 			//url = $(this).attr("rel");   
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    loadURL click : ' + url);
-			navigator.app.loadUrl(url, { openExternal:true });
+			//navigator.app.loadUrl(url, { openExternal:true });
+			//window.plugins.childBrowser.showWebPage(url, { showLocationBar: false });
+			//window.open(url, '_blank', 'location=yes');
+			window.open(url, '_system', 'location=yes');
 			return false;
 		}
 	</script>
