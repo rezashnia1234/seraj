@@ -1,0 +1,213 @@
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+body{background:#f2f2f2;}
+#left-bg {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: auto;
+  z-index: 0;
+}
+#home-btn
+{
+	cursor:pointer;
+	max-width:194px;
+	min-width:40px;
+	top:0;
+	right:0;
+	position:absolute;
+	width:65px;
+	height:65px;
+	z-index:1;
+}
+#right-bg {
+  height: 100%;
+  right: 0;
+  position: absolute;
+  top: 0;
+  width: auto;
+  z-index: 0;
+}
+div.ps-viewport
+{
+	max-width:65% !important;
+	max-height:65% !important;
+}
+.ps-toolbar
+{
+	
+}
+.ps-caption {
+  border: medium none !important;
+  background: none repeat scroll 0 0 #cda236 !important;
+  color: #ffffff !important;
+}
+.smgroup-logo
+{
+  right: 0px;
+  position: absolute;
+  top: -50px;
+  z-index: 1006;
+  height: 50px;
+  width: 100px;
+}
+.smgroup-box
+{
+
+}
+.smgroup-border
+{
+  background: #cda236;
+  left:-8px;
+  position: absolute;
+  top: 0px;
+}
+div.ps-toolbar-next
+{
+  right: 0px ;
+  position: absolute ;
+  top: 0px ;
+  height:100% ;
+  width:38px ;
+}
+div.ps-toolbar-previous
+{
+  left: 0px ;
+  position: absolute ;
+  top: 0px ;
+  height:100% ;
+  width:38px ;
+}
+div.ps-toolbar-next div.ps-toolbar-content {
+  background-image: url("../images/gallery/next-btn.png") ;
+  background-repeat: no-repeat ;
+  background-size: 38px 123px;
+  height: 100% ;
+  width: 38px ;
+  background-position:center center;
+}
+div.ps-toolbar-previous div.ps-toolbar-content {
+  background-image: url("../images/gallery/perv-btn.png") ;
+  background-repeat: no-repeat ;
+  background-size: 38px 123px;
+  height: 100% ;
+  width: 38px ;
+  background-position:center center;
+}
+div.ps-toolbar-play
+{
+  left: 0px ;
+  position: absolute ;
+  bottom: -40px ;
+  height:52px ;
+  width:40px ;
+}
+div.ps-toolbar-play div.ps-toolbar-content {
+  background-image: url("../images/gallery/play.png") ;
+  background-repeat: no-repeat ;
+  background-size: 52px 40px;
+  height: 52px% ;
+  width: 40px ;
+  background-position:center center;
+}
+div#smgroup-play
+{
+  left: -8px ;
+  position: absolute ;
+  bottom: -46px ;
+  height:52px ;
+  width:40px ;
+}
+div#smgroup-play div.ps-toolbar-content {
+  background-image: url("../images/gallery/play.png") ;
+  background-repeat: no-repeat ;
+  background-size: 52px 40px;
+  height: 52px ;
+  width: 40px ;
+  background-position:center center;
+  cursor:pointer;
+}
+.ps-toolbar.ps-toolbar-top
+{
+	display:table-caption;
+}
+#smgroup-caption
+{
+	background:#cda236;
+	/*left: 34px ;*/
+	left: 22px ;
+	position: absolute ;
+	bottom: -40px ;
+	height:22px;
+	color:#ffffff;
+	vertical-align:middle;
+	text-align:left;
+	font-weight:bold;
+	padding:5px 10px;
+}
+#smgroup-tree2
+{
+  background-image: url("../images/gallery/tree.png") ;
+  background-repeat: no-repeat ;
+  background-size: 250px 109px ;
+  height: 109px;
+  width: 250px;
+  background-position:0 0;
+  position: absolute ;
+  bottom: -52px ;
+  right:-54px;
+  z-index:1002;
+}
+#smgroup-tree1
+{
+  background-image: url("../images/gallery/tree.png") ;
+  background-repeat: no-repeat ;
+  background-size: 250px 109px ;
+  height: 109px;
+  width: 250px;
+  background-position:0 0;
+  position: absolute ;
+  bottom: -52px ;
+  right:-54px;
+  z-index:1002;
+}
+#smgroup-title
+{
+  background-image: url("../images/gallery/title.png") ;
+  background-repeat: no-repeat ;
+  background-size: 350px 38px ;
+  height: 38px;
+  width: 350px;
+  background-position:0 0;
+  position: absolute ;
+  top: -38px ;
+  left:-8px;
+  z-index:1002;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 body{background:#f2f2f2;}
 #left
 {
-	width:50%;/*46.875%;*/
+	width:46%;/*46.875%;*/
 	height:100%;
 	margin:0;
 	padding:0;
@@ -13,7 +13,7 @@ body{background:#f2f2f2;}
 }
 #right
 {
-	width:50%;/*53.125%;*/
+	width:54%;/*53.125%;*/
 	height:100%;
 	margin:0;
 	padding:0;
@@ -59,6 +59,14 @@ body{background:#f2f2f2;}
 #left-center
 {
 	right:0;
+	height:100%;
+	max-width:100%;
+	position:absolute;
+	z-index:0;
+}
+#right-center
+{
+	left:0;
 	height:100%;
 	max-width:100%;
 	position:absolute;
