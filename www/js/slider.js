@@ -50,38 +50,7 @@ function prevSlide() {
 	title_div.html( $('.current').attr('ref')	);
 }
 
-$(document).ready(function() {
-	// We're setting the state of the slider as a class
-	slides_wrapper.addClass('slide-1');
 
-	// First slide .current marker
-	$('.slide').first().addClass('current firstslide');
-	$('.slide').last().addClass('lastslide');
-	title_div.html( $('.current').attr('ref')	);
-	
-	// Bind events to displayed slide
-	$('.slide').bind("click", function(e) {
-		e.preventDefault();
-		console.log("200000000");
-		var temp_index =  parseInt(e.target.id, 10);
-		Code.PhotoSwipe.Current.show(temp_index-1);
-		//nextSlide();
-	}).tap(function(e) {
-		e.preventDefault();
-		console.log("200000000");
-		var temp_index =  parseInt(e.target.id, 10);
-		Code.PhotoSwipe.Current.show(temp_index-1);
-		//nextSlide();
-	}).swipeRight(function(e) {
-		e.preventDefault();
-		prevSlide();
-	}).swipeLeft(function(e) {
-		e.preventDefault();
-		nextSlide();
-	}).bind('touchstart', function(e) {
-		e.preventDefault();
-	});
-});
 
 // Support for keyboard arrows
 document.onkeydown = function(e) {

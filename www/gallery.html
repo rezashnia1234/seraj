@@ -15,6 +15,7 @@
 	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
 	<script src="phonegap.js" type="text/javascript"></script>
 	<script src="js/fastclick.js" type="text/javascript"></script>
+	<script src="js/jquery.blockUI.js" type="text/javascript"></script>
 	<script src="js/scale.js" type="text/javascript"></script>
 	
 	<script src="js/simple-inheritance.min.js" type="text/javascript"></script>
@@ -26,11 +27,44 @@
 		
 
 	<script>
+		image_list=new Array();
+		image_list_text="";
+		download_list=new Array();
+		download_list_text="";
+		articles = "";
+		Root_Path = "";
+////////////////////////////////////////////////////////////////////////////////////////////
+// START preloader :///////////////////////////////////////////////////////////////////////
+		function blockui() {
+			jQuery.blockUI({
+				message: '<img src="images/preloader.gif"/>',
+				css: {
+					color: '#fff',
+					backgroundColor: '#fff',
+					border: 'none'
+				},
+				overlayCSS: {
+					backgroundColor: '#fff',
+					opacity: 1
+				}
+			});
+		}
+		function unblockui() {
+			jQuery.unblockUI();
+		}
+// END preloader ://////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 		function init() {			
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
-			document.addEventListener("deviceready", onDeviceReady, false);
+			//document.addEventListener("deviceready", onDeviceReady, false);
 			//document.addEventListener("DOMContentLoaded", loaded, false);
-			
+
+			onDeviceReady();
+		}
+		function onDeviceReady() {
+			//FastClick.attach(document.body);	
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			scalePage(768,"#home-btn",true);
 			scalePage(768,"#bg-right-cover",true);
 			scalePage(768,"#bg-left-cover",true);
@@ -38,13 +72,110 @@
 			scalePage(768,"#bg-left",true);
 			scalePage_center(768,"#main",true);
 			
-			Code.photoSwipe('a', '#slides_wrapper', { loop: true ,allowUserZoom: true} );
+			StartMakeImageList(0);
+			jQuery('#temp').queue(StartMakeImageList).delay( 1500 ).queue(MakeDataTableContent).delay( 500 ).queue(DrawDataTable);
 		}
-		function onDeviceReady() {
-			FastClick.attach(document.body);	
-			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
-			
+		
+		function StartMakeImageList(next) {
+			jQuery.ajax({
+				url: 'js/images.json',//'js/articles.json',
+				crossDomain: true,
+				jsonpCallback: 'cb',
+				dataType: 'jsonp',
+			})
+				.fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); /*alert('Failed to load data.');*/ })
+				.done(function (data) {
+					var output='';
+					articles = data;
+					jQuery.each(data.images,function(key,val) {
+						if(val.image!="")
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    GetSavedFile +' + val.image);
+							//GetSavedFile(val.image, "temp", jQuery.md5(val.image)  );
+							
+							
+							
+						}
+						else
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    GetSavedFile no image /id=' + val.id);
+						}
+					});
+					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END GetSavedFile');
+					next();
+			});			
+		}
+		function MakeDataTableContent(next) {
+		/*
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    ASK FOR SRART DOWNLOAD');
+			StartDownload();
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END ASK FOR SRART DOWNLOAD');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    START MakeDataTableContent');
+			image_list_text = window.localStorage.getItem('image_list_text');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    image_list_text : ' +image_list_text);
+			image_list = image_list_text.split('; -,');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    image_list : ' +image_list);
+		*/
+			var thumbnail='';
+			var output='';
+			var id_temp = 0;
+			jQuery.each(articles.images,function(key,val) {
+				id_temp = id_temp +1;
+				if(val.image)
+				{
+					//thumbnail = is_url_in_array(val.thumbnail,image_list);
+					thumbnail = val.image;
+				} 
+				else
+				{
+					thumbnail = "images/blank.png";
+				}
+				output += '<section id="slide-' + id_temp + '"  class="slide" ref="' + val.title + '">';
+				output += '<a href="' + val.image + '"> <img src="' + val.image + '" id="' + id_temp + '" alt="' + val.title + '" style="height:483px;width:795px;"></a>';
+				output += '</section>';
+			});
 
+			jQuery('#slides_wrapper').html(output);
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END MakeDataTableContent');
+			next();
+		}
+		function DrawDataTable(next) {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    START DrawDataTable');
+			
+			// We're setting the state of the slider as a class
+			slides_wrapper.addClass('slide-1');
+
+			// First slide .current marker
+			$('.slide').first().addClass('current firstslide');
+			$('.slide').last().addClass('lastslide');
+			title_div.html( $('.current').attr('ref')	);
+			
+			// Bind events to displayed slide
+			$('.slide').bind("click", function(e) {
+				e.preventDefault();
+				console.log("200000000");
+				var temp_index =  parseInt(e.target.id, 10);
+				Code.PhotoSwipe.Current.show(temp_index-1);
+				//nextSlide();
+			}).tap(function(e) {
+				e.preventDefault();
+				console.log("200000000");
+				var temp_index =  parseInt(e.target.id, 10);
+				Code.PhotoSwipe.Current.show(temp_index-1);
+				//nextSlide();
+			}).swipeRight(function(e) {
+				e.preventDefault();
+				prevSlide();
+			}).swipeLeft(function(e) {
+				e.preventDefault();
+				nextSlide();
+			}).bind('touchstart', function(e) {
+				e.preventDefault();
+			});
+			
+			
+			Code.photoSwipe('a', '#slides_wrapper', { loop: true ,allowUserZoom: true} );
+			unblockui();
 		}
 	</script>
 
@@ -57,7 +188,7 @@ body{
 #main{
 	height:768px;
 	width:1024px;
-	background:url('images/new_gallery/center.png') no-repeat 0 0;
+	background:url('images/gallery/center.png') no-repeat 0 0;
 	background-size:cover;
 	z-index:3;
 	overflow:hidden;
@@ -81,7 +212,7 @@ body{
 	position:fixed;
 	top:0;
 	left:0;
-	background:url('images/new_gallery/bg-left-btn.png') no-repeat 0 0;
+	background:url('images/gallery/bg-left-btn.png') no-repeat 0 0;
 	background-size:cover;
 	cursor:pointer;
 	z-index:1;
@@ -93,7 +224,7 @@ body{
 	position:fixed;
 	top:0;
 	right:0;
-	background:url('images/new_gallery/bg-right-btn.png') no-repeat 0 0;
+	background:url('images/gallery/bg-right-btn.png') no-repeat 0 0;
 	background-size:cover;
 	cursor:pointer;
 	z-index:1;
@@ -134,7 +265,7 @@ body{
 	position:absolute;
 	top:619px;
 	right:42px;
-	background:url('images/new_gallery/gol.png') no-repeat 0 0;
+	background:url('images/gallery/gol.png') no-repeat 0 0;
 	background-size:cover;
 	z-index:10;
 }
@@ -174,6 +305,7 @@ body{
 </style>
 </head>
 <body onload="init()">
+	<script>blockui();</script>
 	<div id="temp"></div>
 	<div id="bg-left-cover" ></div>
 	<div id="bg-right-cover" ></div>
@@ -189,72 +321,11 @@ body{
 		<div id="prev-side" onclick="prevSlide();"></div>
 					<div id="slide_body" >
 					  <div id="slides_wrapper">
+<!--
 						<section id="slide-1" class="slide" ref="نشر دیجیتال">
 						  <a href="gallery/01.jpg"> <img src="gallery/01.jpg" id="1" alt="نشر دیجیتال" style="height:483px;width:795px;"></a>
 						</section>
-
-						<section id="slide-2" class="slide" ref="بازی و انیمیشن">
-						  <a href="gallery/02.jpg"><img src="gallery/02.jpg" id="2" alt="بازی و انیمیشن" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-3" class="slide" ref="بین الملل">
-						  <a href="gallery/03.jpg"><img src="gallery/03.jpg" id="3" alt="بین الملل" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-4" class="slide" ref="فناوری اطلاعات">
-						   <a href="gallery/04.jpg"><img src="gallery/04.jpg" id="4" alt="فناوری اطلاعات" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-5" class="slide " ref="کودک و نوجوان">
-						   <a href="gallery/05.jpg"><img src="gallery/05.jpg" id="5" alt="کودک و نوجوان" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-6" class="slide " ref="واقعیت افزوده">
-						   <a href="gallery/06.jpg"><img src="gallery/06.jpg" id="6" alt="واقعیت افزوده" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-7" class="slide " ref="دیجیتال در آینه هنر">
-						   <a href="gallery/07.jpg"><img src="gallery/07.jpg" id="7" alt="دیجیتال در آینه هنر" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-8" class="slide " ref="فرصت ها و تهدید ها">
-						   <a href="gallery/08.jpg"><img src="gallery/08.jpg" id="8" alt="فرصت ها و تهدید ها" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-9" class="slide " ref="فروشگاه محصولات فرهنگی">
-						   <a href="gallery/09.jpg"><img src="gallery/09.jpg" id="9" alt="فروشگاه محصولات فرهنگی" style="height:483px;width:795px;"></a>
-						</section>
-
-						<section id="slide-10" class="slide " ref="کارگاه ها و نشست ها">
-						   <a href="gallery/10.jpg"><img src="gallery/10.jpg" id="10" alt="کارگاه ها و نشست ها" style="height:483px;width:795px;"></a>
-						</section>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
+-->
 						
 					  </div>
 					</div>
