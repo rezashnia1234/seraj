@@ -1702,13 +1702,17 @@
 			Util.DOM.appendChild(this.el, parentEl);
 			
 			
-			this.el = Util.DOM.createElement('div', { 'id': 'smgroup-play0000000000000000000000000' }, '<div class="ps-toolbar-content"></div>');
+			this.el = Util.DOM.createElement('div', { 'id': 'smgroup-play', 'onClick': 'Code.PhotoSwipe.Current.startSlideshow();' }, '<div class="ps-toolbar-content"></div>');
 			Util.DOM.setStyle(this.el, {	});
 			Util.DOM.appendChild(this.el, parentEl);
 			
 			
 			this.el = Util.DOM.createElement('div', { 'id': 'smgroup-title' }, '');
-			Util.DOM.setStyle(this.el, {	});
+			Util.DOM.setStyle(this.el, {
+				top: "-" + Util.DOM.windowHeight()*0.048 + 'px',
+			});
+			Util.DOM.width(this.el,  Util.DOM.windowHeight()*0.048*707/77				);
+			Util.DOM.height(this.el, Util.DOM.windowHeight()*0.048						);
 			Util.DOM.appendChild(this.el, parentEl);
 //HAMID END///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3052,14 +3056,21 @@
 			this.playEl = Util.DOM.createElement('div', { 'class': Code.PhotoSwipe.ToolbarClass.CssClasses.play }, '<div class="' + Code.PhotoSwipe.ToolbarClass.CssClasses.content + '"></div>');
 			Util.DOM.appendChild(this.playEl, this.el);
 			
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// START Hamid//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 			// Previous
-			this.previousEl = Util.DOM.createElement('div', { 'class': Code.PhotoSwipe.ToolbarClass.CssClasses.previous }, '<div class="' + Code.PhotoSwipe.ToolbarClass.CssClasses.content + '"></div>');
-			Util.DOM.appendChild(this.previousEl, this.el);
+			this.previousEl = Util.DOM.createElement('div', { 'class': 'ps-toolbar-previous' , 'onClick': 'Code.PhotoSwipe.Current.showPrevious();'}, '<div class="ps-toolbar-content"></div>');
+			//Util.DOM.appendChild(this.previousEl, this.el);
+			Util.DOM.appendToBody(this.previousEl);
 			
 			// Next
-			this.nextEl = Util.DOM.createElement('div', { 'class': Code.PhotoSwipe.ToolbarClass.CssClasses.next }, '<div class="' + Code.PhotoSwipe.ToolbarClass.CssClasses.content + '"></div>');
-			Util.DOM.appendChild(this.nextEl, this.el);
-			
+			this.nextEl = Util.DOM.createElement('div', { 'class': 'ps-toolbar-next', 'onClick': 'Code.PhotoSwipe.Current.showNext();'}, '<div class="ps-toolbar-content"></div>');
+			//Util.DOM.appendChild(this.nextEl, this.el);
+			Util.DOM.appendToBody(this.nextEl);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// END Hamid////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		},
 		
 		

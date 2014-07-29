@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   >
+<head>
+	<meta name="format-detection" content="telephone-no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>گالری عکس</title>
+	<style type="text/css">
+		body { padding: 0; margin: 0; background: black; }
+	</style>
+	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
+
+	<link href="css/photoswipe.css" type="text/css" rel="stylesheet" />
+	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/scale.js"></script>
+
+	<script type="text/javascript" src="js/simple-inheritance.min.js"></script>
+	<script type="text/javascript" src="js/code-photoswipe-1.0.11.js"></script>
+	
+	
+<script type="text/javascript">
+function init() {	
+	//scalePage(1024,"body",false);
+
+}
+</script>
+	
+	
+	<script type="text/javascript">
+		
+		/*
+			This example shows how to set up PhotoSwipe and run in "exclusive" mode.
+			
+			This means the user will only be able to interact with PhotoSwipe, and not
+			the underlying document. They will be unable to close PhotoSwipe once it 
+			is active.
+			
+			It also demonstrates how to initiate PhotoSwipe from an array of custom objects
+			not HTML elements.
+		*/
+		
+		document.addEventListener('DOMContentLoaded', function(){
+			
+			// Set up PhotoSwipe, setting "preventHide: true"
+			Code.PhotoSwipe.Current.setOptions({
+				preventHide: true,
+				captionAndToolbarHide: false,
+				captionAndToolbarHideOnSwipe: false,
+				captionAndToolbarFlipPosition: true,
+				captionAndToolbarAutoHideDelay: 0,
+				captionAndToolbarOpacity: 1,
+				captionAndToolbarShowEmptyCaptions: true,
+				allowUserZoom: false,// iOS only - Allow the user to zoom / pan around images. Default "true"
+				getImageSource: function(obj){
+					return obj.url;
+				},
+				getImageCaption: function(obj){
+					return obj.caption;
+				}
+			});
+			
+			Code.PhotoSwipe.Current.setImages([
+				{ url: 'gallery/001.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/002.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - دو'},
+				{ url: 'gallery/003.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - سه'},
+				{ url: 'gallery/004.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - چهار'},
+				{ url: 'gallery/005.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - پنج'},
+				{ url: 'gallery/006.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - شش'},
+				{ url: 'gallery/007.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - هفت'},
+				{ url: 'gallery/008.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - هشت'},
+				{ url: 'gallery/009.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/010.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/011.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/012.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/013.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/014.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/015.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - یک'},
+				{ url: 'gallery/016.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - شانزده'},
+				{ url: 'gallery/017.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - هفده'},
+				{ url: 'gallery/018.jpg', caption: 'نمایشگاه رسانه های دیجیتال انقلاب اسلامی - هجده'}
+			]);
+		
+			Code.PhotoSwipe.Current.show(0);
+			
+		}, false);
+
+		
+	</script>
+	
+</head>
+<body onload="init();">
+	<div id="left-bg"><img src="images/inner-bg-left.png" style="width:auto;height:100%;" ></div>
+	<div id="right-bg"><img src="images/inner-bg-right.png" style="width:auto;height:100%;" ></div>
+	<div id="home-btn"><a href="index.html"><img src="images/about/home.png" style="width:100%;height:100%;" ></a></div>
+
+</body>
+</html>

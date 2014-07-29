@@ -22,9 +22,6 @@
 			//document.addEventListener("DOMContentLoaded", loaded, false);
 			
 			scalePage(768,"#exit-btn",true);
-			scalePage(768,"#info-btn",true);
-			scalePage(768,"#left-bg",true);
-			scalePage(768,"#right-bg",true);
 			scalePage_center(768,"#main",true);
 		}
 		function onDeviceReady() {
@@ -44,15 +41,10 @@
 
 
 <style>
-body{
-	background:#00afad;
-	overflow:hidden;
-}
 #main{
 	height:768px;
 	width:1024px;
-	background:url('images/index/center.png') no-repeat 0 0;
-	background-size:cover;
+	background:gray;
 	z-index:1;
 }
 #exit-btn{
@@ -62,74 +54,23 @@ body{
 	position:fixed;
 	top:0;
 	left:0;
-	background:url('images/index/exit.png') no-repeat 0 0;
+	background:url('images/exit.png') no-repeat 0 0;
 	background-size:cover;
 	cursor:pointer;
-	z-index:3;
-}
-#info-btn{
-	width:100px;
-	height:100px;
-	overflow:hidden;
-	position:fixed;
-	bottom:0;
-	left:0;
-	background:url('images/index/info.png') no-repeat 0 0;
-	background-size:cover;
-	cursor:pointer;
-	z-index:3;
-}
-#left-bg{
-	width:344px;
-	height:768px;
-	overflow:hidden;
-	position:fixed;
-	top:0;
-	left:0;
-	background:url('images/index/left-bg.png') no-repeat 0 0;
-	background-size:cover;
 	z-index:2;
-}
-#right-bg{
-	width:344px;
-	height:768px;
-	overflow:hidden;
-	position:fixed;
-	top:0;
-	right:0;
-	background:#f2f2f2;
-	background-size:cover;
-	z-index:0;
-}
-#links {
-  position: absolute;
-  right: 39px;
-  top: 280px;
-}
-.menu-btn{
-	height:64px;
-	width:313px;
 }
 </style>
 </head>
 <body onload="init()">
 	<div id="temp"></div>
 	<div id="exit-btn" onclick="exit();"></div>
-	<a href="about.html">
-		<div id="info-btn"></div>
-	</a>
-	<div id="left-bg"></div>
-	<div id="right-bg"></div>
-
 	<div id="main">
-		<div id="links">
-			<a href="gallery.html"><div id="link-1th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-2th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-3th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-4th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-5th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-6th" class="menu-btn" ></div></a>
-		</div>
+		سلام
 	</div>
+	
+	
+	
+	
+
 </body>
 </html>
