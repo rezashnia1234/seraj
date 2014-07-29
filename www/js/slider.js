@@ -69,7 +69,8 @@ $(document).ready(function() {
 	}).tap(function(e) {
 		e.preventDefault();
 		console.log("200000000");
-		Code.PhotoSwipe.Current.show(0);
+		var temp_index =  parseInt(e.target.id, 10);
+		Code.PhotoSwipe.Current.show(temp_index-1);
 		//nextSlide();
 	}).swipeRight(function(e) {
 		e.preventDefault();
