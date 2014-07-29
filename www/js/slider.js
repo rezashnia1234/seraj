@@ -60,11 +60,16 @@ $(document).ready(function() {
 	title_div.html( $('.current').attr('ref')	);
 
 	// Bind events to displayed slide
-	$('.slide').bind("click", function() {
-		nextSlide();
+	$('.slide').bind("click", function(e) {
+		e.preventDefault();
+		console.log("200000000");
+		Code.PhotoSwipe.Current.show(0);
+		//nextSlide();
 	}).tap(function(e) {
 		e.preventDefault();
-		nextSlide();
+		console.log("200000000");
+		Code.PhotoSwipe.Current.show(0);
+		//nextSlide();
 	}).swipeRight(function(e) {
 		e.preventDefault();
 		prevSlide();

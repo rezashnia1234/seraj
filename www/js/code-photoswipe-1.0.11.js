@@ -5007,7 +5007,8 @@
 					return;
 				}
 					
-				e.preventDefault();	
+
+				
 			}, false);
 			containerEl.addEventListener('dblclick', function(e){
 			
@@ -5042,6 +5043,7 @@
 				}
 				
 				showPhotoSwipe(clickedEl);
+
 			
 			}, false);
 			
