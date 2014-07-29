@@ -8,6 +8,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
 	<link rel="stylesheet" href="css/gallery_2.css" type="text/css" /> 
+	<link rel="stylesheet" href="css/photoswipe.css" type="text/css" /> 
 	
 	<title></title>
 	<script src="js/zepto.min.js"></script>
@@ -15,6 +16,9 @@
 	<script src="phonegap.js" type="text/javascript"></script>
 	<script src="js/fastclick.js" type="text/javascript"></script>
 	<script src="js/scale.js" type="text/javascript"></script>
+	
+	<script src="js/simple-inheritance.min.js" type="text/javascript"></script>
+	<script src="js/code-photoswipe-1.0.11.js" type="text/javascript"></script>
 	<script>
 		$.noConflict();
 	</script>
@@ -33,6 +37,8 @@
 			scalePage(768,"#bg-right",true);
 			scalePage(768,"#bg-left",true);
 			scalePage_center(768,"#main",true);
+			
+			Code.photoSwipe('a', '#slides_wrapper', { loop: true } );
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
@@ -182,43 +188,43 @@ body{
 					<div id="slide_body" >
 					  <div id="slides_wrapper">
 						<section id="slide-1" class="slide" ref="نشر دیجیتال">
-						  <img src="gallery/01.jpg" style="height:100%;width:100%;">
+						  <a href="gallery/01.jpg"> <img src="gallery/01.jpg" alt="نشر دیجیتال" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-2" class="slide" ref="بازی و انیمیشن">
-						  <img src="gallery/02.jpg" style="height:100%;width:100%;">
+						  <a href="gallery/02.jpg"><img src="gallery/02.jpg" alt="بازی و انیمیشن" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-3" class="slide" ref="بین الملل">
-						  <img src="gallery/03.jpg" style="height:100%;width:100%;">
+						  <a href="gallery/03.jpg"><img src="gallery/03.jpg" alt="بین الملل" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-4" class="slide" ref="فناوری اطلاعات">
-						  <img src="gallery/04.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/04.jpg"><img src="gallery/04.jpg" alt="فناوری اطلاعات" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-5" class="slide " ref="کودک و نوجوان">
-						  <img src="gallery/05.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/05.jpg"><img src="gallery/05.jpg" alt="کودک و نوجوان" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-6" class="slide " ref="واقعیت افزوده">
-						  <img src="gallery/06.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/06.jpg"><img src="gallery/06.jpg" alt="واقعیت افزوده" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-7" class="slide " ref="دیجیتال در آینه هنر">
-						  <img src="gallery/07.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/07.jpg"><img src="gallery/07.jpg" alt="دیجیتال در آینه هنر" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-8" class="slide " ref="فرصت ها و تهدید ها">
-						  <img src="gallery/08.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/08.jpg"><img src="gallery/08.jpg" alt="فرصت ها و تهدید ها" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-9" class="slide " ref="فروشگاه محصولات فرهنگی">
-						  <img src="gallery/09.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/09.jpg"><img src="gallery/09.jpg" alt="فروشگاه محصولات فرهنگی" style="height:483px;width:795px;"></a>
 						</section>
 
 						<section id="slide-10" class="slide " ref="کارگاه ها و نشست ها">
-						  <img src="gallery/10.jpg" style="height:100%;width:100%;">
+						   <a href="gallery/10.jpg"><img src="gallery/10.jpg" alt="کارگاه ها و نشست ها" style="height:483px;width:795px;"></a>
 						</section>
 						
 						
