@@ -37,6 +37,15 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Exit the app! command');
 			navigator.app.exitApp();
 		}
+		function loadURL(url){
+			//url = $(this).attr("rel");   
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    loadURL click : ' + url);
+			//navigator.app.loadUrl(url, { openExternal:true });
+			//window.plugins.childBrowser.showWebPage(url, { showLocationBar: false });
+			//window.open(url, '_blank', 'location=yes');
+			window.open(url, '_system', 'location=yes');
+			return false;
+		}
 	</script>
 
 
@@ -89,7 +98,7 @@ body{
 		<div id="home-btn"></div>
 	</a>
 	<div id="main">
-		<a href="http://www.irdmfestival.com">
+		<a href='#' class='link' onclick="loadURL('http://www.irdmfestival.com');"  >
 			<div id="site-btn"></div>
 		</a>	
 	</div>
