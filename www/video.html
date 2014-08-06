@@ -37,6 +37,17 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Exit the app! command');
 			navigator.app.exitApp();
 		}
+		function exit22222222() {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.applicationDirectory :' + cordova.file.applicationDirectory );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.applicationStorageDirectory :' + cordova.file.applicationStorageDirectory );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.cacheDirectory :' + cordova.file.cacheDirectory );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.dataDirectory :' + cordova.file.dataDirectory );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file :' + cordova.file );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.externalRootDirectory :' + cordova.file.externalRootDirectory );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.externalApplicationStorageDirectory :' + cordova.file.externalApplicationStorageDirectory );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.externalCacheDirectry :' + cordova.file.externalCacheDirectry );
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    cordova.file.externalDataDirectory :' + cordova.file.externalDataDirectory );
+		}
 	</script>
 
 
@@ -64,6 +75,7 @@
 <body onload="init()">
 	<div id="temp"></div>
 	<div id="exit-btn" onclick="exit();"></div>
+	<div onclick="exit22222222();">saaaaaaaaaaaalaaaaaaaaaaaaaaaaaaam</div>
 	<div id="main">
 <!--
 			<video poster="images/video/snap.jpg" preload="none" controls="" id="video" webkit-playsinline>
