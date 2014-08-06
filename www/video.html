@@ -32,18 +32,16 @@
 				$('#exit-btn').css({'display':'none'});
 			}
 
-			
-			window.plugins.html5Video.initialize({
-				  "my_video_1th" : "images/video/video.m4v",
-				  "my_video_2th" : "raw/video.m4v",
-			})
-			
+
 			
 			  
 		}
 		function exit() {
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Exit the app! command');
 			navigator.app.exitApp();
+		}
+		function video() {
+			VideoPlayer.play("file:///android_asset/www/images/video/video.m4v");
 		}
 		function exit22222222() {
 			var output_temp;
@@ -133,12 +131,16 @@
 				  <source type="video/ogg" src="images/video/video.ogg" id="ogv"></source>
 				  <p>دستگاه شما hmtl5 را تحت پوشش قرار نمیدهد.</p>
 			</video>
--->
 			<video id="Hip_Bridge_video" poster="images/video/snap.jpg" webkit-playsinline >
 						  <source src="images/video/video.m4v" type="video/mp4">
 			</video>
-			<video id="my_video_1th"  ></video>
-			<video id="my_video_2th"  ></video>
+-->	
+			<video id="Hip_Bridge_video" poster="images/video/snap.jpg" webkit-playsinline >
+						  <source src="file:///android_asset/www/images/video/video.m4v" type="video/mp4">
+			</video>
+<br/><br/><br/><br/><br/>
+	<div  id="video-btn" onclick="video();">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</div>
+
 			
 			
 			
