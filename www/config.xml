@@ -74,7 +74,7 @@
 		<false/>
 	</gap:config-file>
 	
-	
+	<gap:plugin name="com.jaeger.html5video" version="1.2.1" />	
 	
 	
 	
