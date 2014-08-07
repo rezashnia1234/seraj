@@ -75,6 +75,7 @@
 	</gap:config-file>
 	
 	<gap:plugin name="com.moust.cordova.videoplayer" version="1.0.0" />	
+	<gap:plugin name="com.jaeger.html5video" version="1.2.1" />
 	
     <!-- Define app icon  -->
     <icon src="icon.png" />
