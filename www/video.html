@@ -1,37 +1,55 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   >
 <head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-</head>
+	<meta name="format-detection" content="telephone-no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
 
-<body>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
+	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script src="phonegap.js" type="text/javascript"></script>
+	
+	<title></title>
+	<script>
+		function init() {			
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
+			document.addEventListener("deviceready", onDeviceReady, false);	
+		}
+		function onDeviceReady() {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
+			
+
+
+		}
+	</script>	
+
+</head>
+<body onload="init()">
+
 <!--autoplay
 <video width="300px" id="video3" poster="small.png" preload="auto" controls  >
 	<source src=small.mp4>
 </video>-->
-<video width="560px" height="320px" id="video3" poster="small.png" preload="auto" controls  >
-	<source src="file:///assets/www/small.mp4" type="video/mp4">
+
+<div onclick="alert('dddd');">aaaaaaaaaaaaaaa</div>
+<div onclick="VideoPlayer.play("file:///android_asset/www/small.mp4");">aaaaaaaaaaaaaaa</div>
+<!--
+<video width="300px" id="video4" poster="small.png" preload="auto" controls  >
+	<source src=file:///android_asset/www/small.mp4>
 </video>
+-->
 <video width="300px" controls> 
-  <source src="http://techslides.com/demos/sample-videos/small.webm" type="video/webm" > 
-  <source src="http://techslides.com/demos/sample-videos/small.ogv" type="video/ogg" > 
-  <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4" >
-  <source src="http://techslides.com/demos/sample-videos/small.3gp" type="video/3gp" >
+  <source src=http://techslides.com/demos/sample-videos/small.webm type=video/webm> 
+  <source src=http://techslides.com/demos/sample-videos/small.ogv type=video/ogg> 
+  <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
+  <source src=http://techslides.com/demos/sample-videos/small.3gp type=video/3gp>
 </video>
 
 
 </body>
 <script>
 
-var video = document.getElementById('video3');
-video.addEventListener('click',function(){
-  video.play();
-},false);
-var video4 = document.getElementById('video4');
-video.addEventListener('click',function(){
-  video.play();
-},false);
 
 </script>
 </html>
