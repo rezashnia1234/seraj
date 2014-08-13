@@ -82,6 +82,70 @@
 			$("#menu-close").css({"display":"block"})
 			$("#menu-open").css({"display":"none"})
 		}
+		var bt1_triger = false;
+		var bt2_triger = false;
+		var bt3_triger = false;
+		var bt4_triger = false;
+		var bt5_triger = false;
+		var bt6_triger = false;
+		var bt7_triger = false;
+		var bt8_triger = false;
+		function b1th() {
+			if(bt1_triger)
+				$("#L1").css({"display":"none"});
+			else
+				$("#L1").css({"display":"block"});
+			bt1_triger = !bt1_triger;
+		}
+		function b2th() {
+			if(bt2_triger)
+				$("#L2").css({"display":"none"});
+			else
+				$("#L2").css({"display":"block"});
+			bt2_triger = !bt2_triger;
+		}
+		function b3th() {
+			if(bt3_triger)
+				$("#L3").css({"display":"none"});
+			else
+				$("#L3").css({"display":"block"});
+			bt3_triger = !bt3_triger;
+		}
+		function b4th() {
+			if(bt4_triger)
+				$("#L4").css({"display":"none"});
+			else
+				$("#L4").css({"display":"block"});
+			bt4_triger = !bt4_triger;
+		}
+		function b5th() {
+			if(bt5_triger)
+				$("#L5").css({"display":"none"});
+			else
+				$("#L5").css({"display":"block"});
+			bt5_triger = !bt5_triger;
+		}
+		function b6th() {
+			if(bt6_triger)
+				$("#L6").css({"display":"none"});
+			else
+				$("#L6").css({"display":"block"});
+			bt6_triger = !bt6_triger;
+		}
+		function b7th() {
+			if(bt7_triger)
+				$("#L7").css({"display":"none"});
+			else
+				$("#L7").css({"display":"block"});
+			bt7_triger = !bt7_triger;
+		}
+		function b8th() {
+			if(bt8_triger)
+				$("#L8").css({"display":"none"});
+			else
+				$("#L8").css({"display":"block"});
+			bt8_triger = !bt8_triger;
+		}
 	</script>
 	
 	
@@ -100,6 +164,64 @@
 
 		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	</script>
+<style>
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	-ms-touch-action: none;
+}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+}
+
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: #ccc;
+	overflow: hidden;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+</style>
+
+
 <style>
 body{
 	background:#f2f2f2;
@@ -180,18 +302,8 @@ body{
 .b7th{top: 550px;}
 .b8th{top: 603px;}
 
-.mapicon{
-	z-index:2;
-	position:absolute;
-	top:200px;
-	left:200px;
-	height:100px;
-	width:50px;
-	background:black;
-	opacity:0.3;
-}
+
 </style>
-	
   </head>
 <!--<body onload="OnLoad();">-->
 <body style="margin:0;" onload="init()">
@@ -201,21 +313,24 @@ body{
 	
 	<div id="menu-close" onclick="menu_open();"></div>
 	<div id="menu-open">
-		<div class="btn b1th" ></div>
-		<div class="btn b2th" ></div>
-		<div class="btn b3th" ></div>
-		<div class="btn b4th" ></div>
-		<div class="btn b5th" ></div>
-		<div class="btn b6th" ></div>
-		<div class="btn b7th" ></div>
-		<div class="btn b8th" ></div>
+		<div class="btn b1th" onclick="b1th();"></div>
+		<div class="btn b2th" onclick="b2th();"></div>
+		<div class="btn b3th" onclick="b3th();"></div>
+		<div class="btn b4th" onclick="b4th();"></div>
+		<div class="btn b5th" onclick="b5th();"></div>
+		<div class="btn b6th" onclick="b6th();"></div>
+		<div class="btn b7th" onclick="b7th();"></div>
+		<div class="btn b8th" onclick="b8th();"></div>
 		<div id="menu-open-close2" onclick="menu_close();"></div>
 		<div id="menu-open-close" onclick="menu_close();"></div>
 	</div>
-	<div id="wrapper" style="width:100%;margin:0;">
-		<div width="2000px" alt="" style="max-width:100%; height:auto;z-index:1;">
-			<div class="mapicon beynolmelal"></div>
+	<div id="wrapper">
+		<div id="scroller" width="2000px" alt="" style="max-width:100%; height:auto;z-index:1;">
+			<img id="L1" src="images/map/L1.png" width="2000px" alt="" style="max-width:100%; height:auto;z-index:2;position:absolute;top:0;left:0;display:none;" />
+			<img id="L2" src="images/map/L2.png" width="2000px" alt="" style="max-width:100%; height:auto;z-index:2;position:absolute;top:0;left:0;display:none;" />
 			<img id="image" src="images/map/metro.png" width="2000px" alt="" style="max-width:100%; height:auto;z-index:1;position:absolute;top:0;left:0;" />
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		</div>
 	</div>
 	<script>loaded();</script>
