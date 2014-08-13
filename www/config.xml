@@ -79,7 +79,7 @@
 	<gap:plugin name="net.yoik.cordova.plugins.screenorientation" version="1.1.1" />
 
 	
-    <!-- Define app icon  -->
+    <!-- Define app icon      -->
     <icon src="icon.png" />
 	
     <!-- Define app splash screen for each platform. -->
