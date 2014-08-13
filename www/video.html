@@ -72,7 +72,10 @@
 			unblockui();
 		}
 		function play() {
-			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+			$("#temp").html("salam : ");
+			var temp_platform = device.platform;
+			temp_platform = temp_platform.toLowerCase();
+			if ( temp_platform == 'android' ){//Android,iOS,win7=WinCE,win8=Win32NT
 				VideoPlayer.play('file:///android_asset/www/images/video/small.mp4');
 			}
 			else
@@ -214,11 +217,16 @@ body{
   top: 189px;
   width: 795px;
 }
+
+#temp {
+  z-index: 100;
+  font-size: 50px;
+}
 </style>
 </head>
 <body onload="init()">
 	<script>blockui();</script>
-	<div id="temp"></div>
+	<div id="temp">000000000</div>
 	<div id="bg-left" ></div>
 	<div id="bg-right" ></div>
 	<a href="index.html">
@@ -226,7 +234,7 @@ body{
 	</a>
 	<div id="main" >
 		
-		<video width="0px" id="video" poster="images/video/small.png" preload="auto" controls>
+		<video width="1px" id="video" poster="images/video/small.png" preload="auto" controls>
 			<source src="images/video/small.mp4">
 		</video>
 		<div id="play-btn" onclick="play();" ></div>
