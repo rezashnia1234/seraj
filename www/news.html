@@ -7,11 +7,7 @@
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
-	<link rel="stylesheet" href="css/gallery_2.css" type="text/css" /> 
-	<link rel="stylesheet" href="css/photoswipe.css" type="text/css" /> 
-	
 	<title></title>
-	<script src="js/zepto.min.js"></script>
 	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
 	<script src="phonegap.js" type="text/javascript"></script>
 	<script src="js/fastclick.js" type="text/javascript"></script>
@@ -60,7 +56,7 @@
 			onDeviceReady();
 		}
 		function onDeviceReady() {
-			FastClick.attach(document.body);	
+			//FastClick.attach(document.body);	
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			scalePage(768,"#home-btn",true);
 			scalePage(768,"#bg-right",true);
@@ -71,15 +67,7 @@
 			
 			unblockui();
 		}
-		function play() {
-			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-				VideoPlayer.play('file:///android_asset/www/images/video/small.mp4');
-			}
-			else
-			{
-				$('#video')[0].play();
-			}
-		}
+
 
 
 
@@ -94,7 +82,7 @@ body{
 #main{
 	height:768px;
 	width:1024px;
-	background:url('images/video/center.png') no-repeat 0 0;
+	background:url('images/news/center.png') no-repeat 0 0;
 	background-size:cover;
 	z-index:3;
 	overflow:hidden;
@@ -162,17 +150,6 @@ body{
 	top:189px;
 	left:133px;
 }
-#gol{
-	width:234px;
-	height:103px;
-	overflow:hidden;
-	position:absolute;
-	top:619px;
-	right:42px;
-	background:url('images/gallery/gol.png') no-repeat 0 0;
-	background-size:cover;
-	z-index:10;
-}
 #title {
   color: white;
   left: 268px;
@@ -226,14 +203,7 @@ body{
 	</a>
 	<div id="main" >
 		
-		<video width="0px" id="video" poster="images/video/small.png" preload="auto" controls>
-			<source src="images/video/small.mp4">
-		</video>
-		<div id="play-btn" onclick="play();" ></div>
 		
 	</div>
-	
-	
-	
 </body>
 </html>

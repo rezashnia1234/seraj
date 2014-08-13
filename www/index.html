@@ -40,6 +40,15 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Exit the app! command');
 			navigator.app.exitApp();
 		}
+		function loadURL(url){
+			//url = $(this).attr("rel");   
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    loadURL click : ' + url);
+			//navigator.app.loadUrl(url, { openExternal:true });
+			//window.plugins.childBrowser.showWebPage(url, { showLocationBar: false });
+			//window.open(url, '_blank', 'location=yes');
+			window.open(url, '_system', 'location=yes');
+			return false;
+		}
 	</script>
 
 
@@ -109,6 +118,7 @@ body{
 .menu-btn{
 	height:64px;
 	width:313px;
+	margin-bottom:11px;
 }
 </style>
 </head>
@@ -123,12 +133,11 @@ body{
 
 	<div id="main">
 		<div id="links">
-			<a href="gallery.html"><div id="link-1th" class="menu-btn" ></div></a>
+			<a href="map.html"><div id="link-1th" class="menu-btn" ></div></a>
 			<a href="video.html"><div id="link-2th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-3th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-4th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-5th" class="menu-btn" ></div></a>
-			<a href="#"><div id="link-6th" class="menu-btn" ></div></a>
+			<a href="news.html"><div id="link-3th" class="menu-btn" ></div></a>
+			<a href="gallery.html"><div id="link-4th" class="menu-btn" ></div></a>
+			<a href='#' class='link' onclick="loadURL('http://www.irdmfestival.com');"  ><div id="link-5th" class="menu-btn" ></div></a>
 		</div>
 	</div>
 </body>
