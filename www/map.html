@@ -97,10 +97,10 @@ body{
 	position:fixed;
 	top:0;
 	left:0;
-	background:url('images/about/home-btn.png') no-repeat 0 0;
+	background:url('images/map/home-btn.png') no-repeat 0 0;
 	background-size:cover;
 	cursor:pointer;
-	z-index:4;
+	z-index:14;
 }
 #menu-close{
 	width:320px;
@@ -164,6 +164,17 @@ body{
 .b6th{top: 496px;}
 .b7th{top: 550px;}
 .b8th{top: 603px;}
+
+.mapicon{
+	z-index:2;
+	position:absolute;
+	top:200px;
+	left:200px;
+	height:100px;
+	width:50px;
+	background:black;
+	opacity:0.3;
+}
 </style>
 	
   </head>
@@ -187,7 +198,10 @@ body{
 		<div id="menu-open-close" onclick="menu_close();"></div>
 	</div>
 	<div id="wrapper" style="width:100%;margin:0;">
-		<img id="image" src="images/map/metro.png" width="1136" alt="" style="max-width:100%; height:auto;" />
+		<div width="1136px" alt="" style="max-width:100%; height:auto;z-index:1;">
+			<div class="mapicon beynolmelal"></div>
+			<img id="image" src="images/map/metro.png" width="1136px" alt="" style="max-width:100%; height:auto;z-index:1;position:absolute;top:0;left:0;" />
+		</div>
 	</div>
 	<script>loaded();</script>
 </body>
