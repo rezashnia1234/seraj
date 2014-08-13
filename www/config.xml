@@ -75,7 +75,9 @@
 	</gap:config-file>
 	
 	<!--<gap:plugin name="com.moust.cordova.videoplayer" version="1.0.0" />	 -->
-	<gap:plugin name="com.dawsonloudon.videoplayer" version="1.0.0" />
+	<gap:plugin name="com.dawsonloudon.videoplayer" 	platform="android "	version="1.0.0" />
+	<gap:plugin name="net.yoik.cordova.plugins.screenorientation" version="1.1.1" />
+
 	
     <!-- Define app icon  -->
     <icon src="icon.png" />

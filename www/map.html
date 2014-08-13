@@ -50,7 +50,7 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
 
-			onDeviceReady();
+			//onDeviceReady();
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
@@ -61,7 +61,8 @@
 			scalePage(768,"#bg-left",true);
 			scalePage_center(768,"#main",true);
 			
-			
+			var so = cordova.plugins.screenorientation;
+			so.setOrientation(so.Orientation.PORTRAIT);
 			
 			unblockui();
 		}
