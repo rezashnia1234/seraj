@@ -50,7 +50,7 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
 
-			//onDeviceReady();
+			onDeviceReady();
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
@@ -64,13 +64,13 @@
 			//var so = cordova.plugins.screenorientation;
 			//so.setOrientation(so.Orientation.PORTRAIT);
 			// set to either portrait
-			screen.lockOrientation('portrait');
+			//screen.lockOrientation('portrait');
 
 			// allow user rotate
 			//screen.unlockOrientation();
 
 			// access current orientation
-			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Orientation is ' + screen.orientation);
+			//console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Orientation is ' + screen.orientation);
 			
 			
 			unblockui();
