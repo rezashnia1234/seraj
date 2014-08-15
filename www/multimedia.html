@@ -71,15 +71,15 @@
 			unblockui();
 		}
 		function play() {
-			//$("#temp").html("salam : ");
-			var temp_platform = device.platform;
+			jQuery("#temp").html("salam : ");
+			var temp_platform = "555";//device.platform;
 			temp_platform = temp_platform.toLowerCase();
 			if ( temp_platform == 'android' ){//Android,iOS,win7=WinCE,win8=Win32NT
 				VideoPlayer.play('file:///android_asset/www/images/video/small.mp4');
 			}
 			else
 			{
-				$('#video')[0].play();
+				jQuery('#video')[0].play();
 			}
 		}
 
@@ -241,8 +241,8 @@ body{
 </style>
 </head>
 <body onload="init()">
-	<script>//blockui();</script>
-	<div id="temp"></div>
+	<script>blockui();</script>
+	<div id="temp">0000</div>
 	<div id="bg-left" ></div>
 	<div id="bg-right" ></div>
 	<a href="index.html">
