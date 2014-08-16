@@ -71,7 +71,7 @@
 			unblockui();
 		}
 		function play() {
-			jQuery("#temp").html("salam : ");
+			//jQuery("#temp").html("salam : ");
 			var temp_platform = "555";//device.platform;
 			temp_platform = temp_platform.toLowerCase();
 			if ( temp_platform == 'android' ){//Android,iOS,win7=WinCE,win8=Win32NT
@@ -242,7 +242,7 @@ body{
 </head>
 <body onload="init()">
 	<script>blockui();</script>
-	<div id="temp">0000</div>
+	<div id="temp"></div>
 	<div id="bg-left" ></div>
 	<div id="bg-right" ></div>
 	<a href="index.html">
