@@ -70,17 +70,6 @@
             // here is where you might want to send it the regID for later use.
             console.log("regID = " + e.regid);
 			alert("regID = " + e.regid);
-			$.ajax({ type: "POST",
-					url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
-					data: {regID : e.regid,user:"ir.smgroup.festival",OS:device.platform},
-					async: false,
-					success : function(text)
-					{
-						//last_articles_version = text;
-						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-						window.localStorage.setItem('register_for_notif','yes');
-					}
-			});
         }
     break;
 
@@ -92,8 +81,8 @@
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
             // if the notification contains a soundname, play it.
-            //var my_media = new Media("/android_asset/www/"+e.soundname);
-            //my_media.play();
+            var my_media = new Media("/android_asset/www/"+e.soundname);
+            my_media.play();
         }
         else
         {  // otherwise we were launched because the user touched a notification in the notification tray.
@@ -123,10 +112,12 @@
 
 
 function successHandler (result) {
+	alert("ccccc");
 	alert('result = ' + result);
 }
 // result contains any error description text returned from the plugin call
 function errorHandler (error) {
+	alert("yyyy");
 	alert('error = ' + error);
 }
 
@@ -165,7 +156,6 @@ function errorHandler (error) {
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 // START push Notification :////////////////////////////////////////////////////////////////
-/*
         pushNotification = window.plugins.pushNotification;
         $("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
 
@@ -191,7 +181,7 @@ function errorHandler (error) {
             });
         }
 		
-*/
+/*
 			pushNotification = window.plugins.pushNotification;
 			//if(window.localStorage.getItem('register_for_notif')=="yes"){
 			//	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : yes');
@@ -205,6 +195,20 @@ function errorHandler (error) {
 					pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationGCM"});//"onNotificationAPN"});
 				}
 			//}
+			function successHandler(result) {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (android) = '+result);
+				$.ajax({ type: "POST",
+						url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
+						data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
+						async: false,
+						success : function(text)
+						{
+							//last_articles_version = text;
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+							window.localStorage.setItem('register_for_notif','yes');
+						}
+				});
+			}
 			function tokenHandler(result) {
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
 				$.ajax({ type: "POST",
@@ -219,10 +223,40 @@ function errorHandler (error) {
 						}
 				});
 			}
+			function errorHandler(error) {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification' + error);
+			}
 
-
-
-
+			// Android
+			function onNotificationGCM(e) {
+				switch( e.event )
+				{
+					case 'registered':
+						if ( e.regid.length > 0 )
+						{
+							// Your GCM push server needs to know the regID before it can push to this device
+							// here is where you might want to send it the regID for later use.
+							alert('registration id = '+e.regid);
+							$.ajax({ type: "POST",
+										url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
+										data: {regID : e.regid,user:"ir.smgroup.festival",OS:device.platform},
+										async: false,
+										success : function(text)
+										{
+											//last_articles_version = text;
+											console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+											window.localStorage.setItem('register_for_notif','yes');
+										}
+							});
+						}
+					break;
+		 
+					default:
+					  //alert('An unknown GCM event has occurred');
+					  break;
+				}
+			}
+*/
 
 // END push Notification ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
