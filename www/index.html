@@ -38,18 +38,18 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 // START push Notification ://///////////////////////////////////////////////////////////
 			pushNotification = window.plugins.pushNotification;
-			if(window.localStorage.getItem('register_for_notif')=="yes"){
-				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : yes');
-			}
-			else
-			{
+			//if(window.localStorage.getItem('register_for_notif')=="yes"){
+			//	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : yes');
+			//}
+			//else
+			//{
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : no // ' + device.platform);
 				if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
 					pushNotification.register(successHandler,errorHandler,{"senderID":"804625540618","ecb":"onNotificationGCM"});
 				} else {
 					pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationGCM"});//"onNotificationAPN"});
 				}
-			}
+			//}
 			function successHandler(result) {
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (android) = '+result);
 				$.ajax({ type: "POST",
