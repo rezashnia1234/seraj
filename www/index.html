@@ -34,6 +34,83 @@
 			if ( device.platform == 'iOS' ){//Android,iOS,win7=WinCE,win8=Win32NT
 				$('#exit-btn').css({'display':'none'});
 			}
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+// START push Notification ://///////////////////////////////////////////////////////////
+			pushNotification = window.plugins.pushNotification;
+			if(window.localStorage.getItem('register_for_notif')=="yes"){
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : yes');
+			}
+			else
+			{
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : no // ' + device.platform);
+				if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+					pushNotification.register(successHandler,errorHandler,{"senderID":"804625540618","ecb":"onNotificationGCM"});
+				} else {
+					pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationGCM"});//"onNotificationAPN"});
+				}
+			}
+			function successHandler(result) {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (android) = '+result);
+				$.ajax({ type: "POST",
+						url: "http://ava.smgroup.ir/notification/RegisterDeviceIDtoDB.php", 
+						data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
+						async: false,
+						success : function(text)
+						{
+							//last_articles_version = text;
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+							window.localStorage.setItem('register_for_notif','yes');
+						}
+				});
+			}
+			function tokenHandler(result) {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
+				$.ajax({ type: "POST",
+						url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
+						data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
+						async: false,
+						success : function(text)
+						{
+							//last_articles_version = text;
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+							window.localStorage.setItem('register_for_notif','yes');
+						}
+				});
+			}
+			function errorHandler(error) {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification' + error);
+			}
+			function onNotificationGCM(e) {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification onNotificationGCM = ' + e.serialize() );
+				switch( e.event )
+				{
+					case 'registered':
+						if ( e.regid.length > 0 )
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration id = '+e.regid);
+						}
+					break;
+		 
+					case 'message':
+					  // this is the actual push notification. its format depends on the data model from the push server
+					  //alert('message = '+e.message+' msgcnt = '+e.msgcnt);
+					  console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification message = '+e.message+' msgcnt = '+e.msgcnt);
+					break;
+		 
+					case 'error':
+					  console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification GCM error = '+e.msg);
+					break;
+		 
+					default:
+					  console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification : An unknown GCM event has occurred');
+					  break;
+				}
+			}
+// END push Notification ///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+			
 
 		}
 		function exit() {
