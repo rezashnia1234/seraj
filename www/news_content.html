@@ -75,28 +75,38 @@
 	</script>
 <style>
 	.container {
-	  background-color:#f5f5f5;
-	  border: 1px solid #cccccc;
-	  border-radius: 5px;
-	  margin-top: 10px;
-	  margin-bottom: 10px;
-	  width: 96%;
-	  margin:0 auto;
-	  padding:10px;
-	  direction:rtl;
-	  text-align:justify;
-	  font-size:14px;
-	  line-height:180%;
+		background-color:#f5f5f5;
+		border: 1px solid #cccccc;
+		border-radius: 5px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 96%;
+		margin:0 auto;
+		padding:10px;
+		direction:rtl;
+		text-align:justify;
+		font-size:14px;
+		line-height:180%;
 	}
 	*{font-family:tahoma;}
 	h2{font-size:14px;}
 	h1 {font-size: 15px;}
+	#back{
+		background:#00afad;
+		text-decoration:none;
+		padding:10px 10px;
+		text-align:right;
+		direction:rtl;
+		border-radius: 5px;
+		width: 96%;
+		margin:0 auto;
+	}
+	.backlink{text-decoration:none;color:white;font-size:13px;}
 </style>
 </head>
 <body onload="init()">
 	<div id="temp"></div>
-	<br/><br/><br/>
-	<a href="list-Copy.html" >بازگشت به لیست اخبار</a>
+	<a href="list-Copy.html" class="backlink" ><div id="back">بازگشت به لیست اخبار</div></a>
 	<br/>
 	<div class="container">
 
@@ -109,6 +119,6 @@
 
 	</div>
 	<br/>
-	<a href="list-Copy.html" >بازگشت به لیست اخبار</a>
+	<a href="list-Copy.html" class="backlink" ><div id="back">بازگشت به لیست اخبار</div></a>
 </body>
 </html>
