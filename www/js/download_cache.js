@@ -112,7 +112,7 @@ function filetransfer(download_link, fp) {
 						$('.loading').css({'display':'none'});
 						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    function ajax articles_version.php   ///' + window.sessionStorage.getItem('can_we_goto_news')  );
 						$.ajax({ type: "GET",   
-								 url: "http://smcms.ir/tmp/articles_version.php",   
+								 url: "http://irdmfestival.com/getjsonid/",   
 								 async: false,
 								 success : function(text)
 								 {
