@@ -252,7 +252,7 @@
 						} else {
 							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSON / check cache lastModifiedDate');
 							$.ajax({ type: "GET",   
-									url: "http://smcms.ir/tmp/articles_version.php",   
+									url: "http://irdmfestival.com/getjsonid/",   
 									async: false,
 									success : function(text)
 									{
@@ -268,7 +268,7 @@
 										else
 										{
 											console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSON / Start Download JSON For cache');
-											DownloadFile("http://irdmfestival.com/getjsonall/", "temp", "articles_json");
+											DownloadFile("http://irdmfestival.com/getjsonall/?/articles_json.php", "temp", "articles_json");
 										}
 									}
 							});
@@ -290,7 +290,7 @@
 						alert("we have some problem");
 				}
 				GapFile.fileExists("temp/articles_json.php", is_fileExists, fileDownloadProblem);
-				//DownloadFile("http://irdmfestival.com/getjsonall/", "temp", "articles_json");
+				//DownloadFile("http://irdmfestival.com/getjsonall/?/articles_json.php", "temp", "articles_json");
 				//DownloadFile("http://smcms.ir/tmp/articles_version.php", "temp", "articles_version");
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END CheckJSON');
 			}
