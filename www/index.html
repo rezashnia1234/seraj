@@ -71,7 +71,7 @@
 				// here is where you might want to send it the regID for later use.
 				//console.log("regID = " + e.regid);
 				//alert("regID = " + e.regid);
-				if(register_for_notifs){
+				//if(register_for_notifs){
 					$.ajax({ type: "POST",
 							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
 							data: {regID : e.regid,user:"ir.smgroup.festival",OS:device.platform},
@@ -83,7 +83,7 @@
 								window.localStorage.setItem('register_for_notifs','yes');
 							}
 					});
-				}
+				//}
 			}
 		break;
 
@@ -174,7 +174,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 // START push Notification :////////////////////////////////////////////////////////////////
-			register_for_notifs = window.localStorage.getItem('register_for_notifs');
+			//register_for_notifs = window.localStorage.getItem('register_for_notifs');
 			pushNotification = window.plugins.pushNotification;
 			//if(window.localStorage.getItem('register_for_notifs')=="yes"){
 			//	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notifs : yes');
@@ -190,7 +190,7 @@
 			//}
 			function tokenHandler(result) {
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
-				if(register_for_notifs){
+				//if(register_for_notifs){
 					$.ajax({ type: "POST",
 							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
 							data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
@@ -202,7 +202,7 @@
 								window.localStorage.setItem('register_for_notifs','yes');
 							}
 					});
-				}
+				//}
 			}
 // END push Notification ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
