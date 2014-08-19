@@ -54,88 +54,91 @@
 		
 		
 		
-		
- function onNotificationGCM(e) {
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+// START push Notification :////////////////////////////////////////////////////////////////
+	 function onNotificationGCM(e) {
+		//alert("uuuuuu");
+		//$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 
-    //alert("uuuuuu");
-    //$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+		switch( e.event )
+		{
+		case 'registered':
+			if ( e.regid.length > 0 )
+			{
+				//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+				// Your GCM push server needs to know the regID before it can push to this device
+				// here is where you might want to send it the regID for later use.
+				//console.log("regID = " + e.regid);
+				//alert("regID = " + e.regid);
+				if(window.localStorage.getItem('register_for_notif')){
+					$.ajax({ type: "POST",
+							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
+							data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
+							async: false,
+							success : function(text)
+							{
+								//last_articles_version = text;
+								console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+								window.localStorage.setItem('register_for_notif','yes');
+							}
+					});
+				}
+			}
+		break;
 
-    switch( e.event )
-    {
-    case 'registered':
-        if ( e.regid.length > 0 )
-        {
-            $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
-            // Your GCM push server needs to know the regID before it can push to this device
-            // here is where you might want to send it the regID for later use.
-            //console.log("regID = " + e.regid);
-			//alert("regID = " + e.regid);
-			$.ajax({ type: "POST",
-					url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
-					data: {regID : e.regid,user:"ir.smgroup.festival",OS:device.platform},
-					async: false,
-					success : function(text)
-					{
-						//last_articles_version = text;
-						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-						window.localStorage.setItem('register_for_notif','yes');
-					}
-			});
-        }
-    break;
+		case 'message':
+			// if this flag is set, this notification happened while we were in the foreground.
+			// you might want to play a sound to get the user's attention, throw up a dialog, etc.
+			if ( e.foreground )
+			{
+				//$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
-    case 'message':
-        // if this flag is set, this notification happened while we were in the foreground.
-        // you might want to play a sound to get the user's attention, throw up a dialog, etc.
-        if ( e.foreground )
-        {
-            //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-
-            // if the notification contains a soundname, play it.
-            //var my_media = new Media("/android_asset/www/"+e.soundname);
-            //my_media.play();
-        }
-        else
-        {  // otherwise we were launched because the user touched a notification in the notification tray.
+				// if the notification contains a soundname, play it.
+				//var my_media = new Media("/android_asset/www/"+e.soundname);
+				//my_media.play();
+			}
+			else
+			{  // otherwise we were launched because the user touched a notification in the notification tray.
+				/*
+				if ( e.coldstart )
+				{
+					$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+				}
+				else
+				{
+					$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+				}
+				*/
+			}
+			
+			alert(e.payload.message);
+			//alert(e.payload.msgcnt);
 			/*
-            if ( e.coldstart )
-            {
-                $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-            }
-            else
-            {
-                $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-            }
+			$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+			$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
 			*/
-        }
-		
-		alert(e.payload.message);
-		alert(e.payload.msgcnt);
-		/*
-        $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-        $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-		*/
-    break;
+		break;
 
-    case 'error':
-        //$("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
-    break;
+		case 'error':
+			//$("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+		break;
 
-    default:
-        //$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
-    break;
-  }
-}
-
-
-function successHandler (result) {
-	//alert('result = ' + result);
-}
-// result contains any error description text returned from the plugin call
-function errorHandler (error) {
-	//alert('error = ' + error);
-}
-
+		default:
+			//$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+		break;
+	  }
+	}
+	function successHandler (result) {
+		//alert('result = ' + result);
+	}
+	// result contains any error description text returned from the plugin call
+	function errorHandler (error) {
+		//alert('error = ' + error);
+	}
+// END push Notification ///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
 		
@@ -171,33 +174,6 @@ function errorHandler (error) {
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 // START push Notification :////////////////////////////////////////////////////////////////
-/*
-        pushNotification = window.plugins.pushNotification;
-        $("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
-
-        if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-            pushNotification.register(
-            successHandler,
-            errorHandler,
-            {
-                senderID: "804625540618",
-                ecb:"onNotificationGCM"
-                //ecb:"app.onNotificationGCM"
-                //ecb:"app.push_android"
-            });
-        } else {
-            pushNotification.register(
-            tokenHandler,
-            errorHandler,
-            {
-                "badge":"true",
-                "sound":"true",
-                "alert":"true",
-                "ecb":"onNotificationAPN"
-            });
-        }
-		
-*/
 			pushNotification = window.plugins.pushNotification;
 			//if(window.localStorage.getItem('register_for_notif')=="yes"){
 			//	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : yes');
@@ -213,23 +189,20 @@ function errorHandler (error) {
 			//}
 			function tokenHandler(result) {
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
-				$.ajax({ type: "POST",
-						url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
-						data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
-						async: false,
-						success : function(text)
-						{
-							//last_articles_version = text;
-							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-							window.localStorage.setItem('register_for_notif','yes');
-						}
-				});
+				if(window.localStorage.getItem('register_for_notif')){
+					$.ajax({ type: "POST",
+							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
+							data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
+							async: false,
+							success : function(text)
+							{
+								//last_articles_version = text;
+								console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+								window.localStorage.setItem('register_for_notif','yes');
+							}
+					});
+				}
 			}
-
-
-
-
-
 // END push Notification ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
