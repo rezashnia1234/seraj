@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>DataTables example - Default ordering (sorting)</title>
+	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/yekan.css">
+
+	<style type="text/css" class="init">
+
+	</style>
+	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script src="phonegap.js" type="text/javascript"></script>
+	<script src="js/jquery.md5.js" type="text/javascript"></script>
+	<script src="js/fastclick.js" type="text/javascript"></script>
+	<script src="js/jquery.blockUI.js" type="text/javascript"></script>
+	<script src="js/jquery.dataTables.min.js" type="text/javascript" language="javascript" ></script>
+	<script src="js/jquery.dotdotdot.min.js" type="text/javascript" language="javascript" ></script>
+	<script type="text/javascript" language="javascript" class="init">
+		function init() {			
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
+			//alert("salam");
+			
+			
+			$.ajax({
+				url: 'http://irdmfestival.com/getjsonall/',//'js/articles.json',//window.localStorage.getItem('Root_Path')+'temp/articles_json.php',//'js/articles.json',
+				crossDomain: true,
+				jsonpCallback: 'cb',
+				dataType: 'jsonp',
+			})
+				.fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); alert('Failed to load data.'); })
+				.done(function (data) {
+					var output='';
+					articles = data;
+					
+					$.each(articles.posts,function(key,val) {
+						if(val.thumbnail)
+						{
+							thumbnail = val.thumbnail;
+						} 
+						else
+						{
+							thumbnail = "images/blank.png";
+						}
+						output += '<tr><td class="c1 c_list" ><a href="news_content.html?id=' + val.id + '">' + '<img src="' + thumbnail + '"  width="75" height="92" /></a></td>';
+						output += '<td class="c2 c_list" ><a href="news_content.html?id=' + val.id + '">' + val.title + '</a></td>';
+						output += '<td class="c3 c_list" ><a href="news_content.html?id=' + val.id + '">' + val.excerpt + '</a></td>';
+						output += '</tr>';
+						/*
+						var tempDiv = document.createElement("tempDiv");
+						tempDiv.innerHTML = val.excerpt;
+						$("a",tempDiv).remove();
+						var excerpt = tempDiv.innerHTML;	
+						*/
+					});
+
+					$('#temp').html(output);
+					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END MakeDataTableContent');
+					
+			});		
+			
+			
+			
+		}
+	</script>
+</head>
+<body onload="init()">
+	<div id="temp">
+
+	</div>
+</body>
+</html>
