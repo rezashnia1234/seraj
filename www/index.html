@@ -74,7 +74,7 @@
 				//if(register_for_notifs){
 					$.ajax({ type: "POST",
 							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
-							data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
+							data: {regID : e.regid,user:"ir.smgroup.festival",OS:device.platform},
 							async: false,
 							success : function(text)
 							{
