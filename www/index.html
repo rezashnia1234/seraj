@@ -27,7 +27,7 @@
 			scalePage(768,"#right-bg",true);
 			scalePage_center(768,"#main",true);
 		}
-		
+		var register_for_notifs = window.localStorage.getItem('register_for_notifs');
 		
 		
 		
@@ -71,7 +71,7 @@
 				// here is where you might want to send it the regID for later use.
 				//console.log("regID = " + e.regid);
 				//alert("regID = " + e.regid);
-				if(window.localStorage.getItem('register_for_notif')){
+				if(register_for_notifs){
 					$.ajax({ type: "POST",
 							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
 							data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
@@ -80,7 +80,7 @@
 							{
 								//last_articles_version = text;
 								console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-								window.localStorage.setItem('register_for_notif','yes');
+								window.localStorage.setItem('register_for_notifs','yes');
 							}
 					});
 				}
@@ -175,12 +175,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 // START push Notification :////////////////////////////////////////////////////////////////
 			pushNotification = window.plugins.pushNotification;
-			//if(window.localStorage.getItem('register_for_notif')=="yes"){
-			//	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : yes');
+			//if(window.localStorage.getItem('register_for_notifs')=="yes"){
+			//	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notifs : yes');
 			//}
 			//else
 			//{
-				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notif : no // ' + device.platform);
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notifs : no // ' + device.platform);
 				if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
 					pushNotification.register(successHandler,errorHandler,{"senderID":"804625540618","ecb":"onNotificationGCM"});
 				} else {
@@ -189,7 +189,7 @@
 			//}
 			function tokenHandler(result) {
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
-				if(window.localStorage.getItem('register_for_notif')){
+				if(register_for_notifs){
 					$.ajax({ type: "POST",
 							url: "http://ar.irdmfestival.com/notification/RegisterDeviceIDtoDB.php", 
 							data: {regID : result,user:"ir.smgroup.festival",OS:device.platform},
@@ -198,7 +198,7 @@
 							{
 								//last_articles_version = text;
 								console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-								window.localStorage.setItem('register_for_notif','yes');
+								window.localStorage.setItem('register_for_notifs','yes');
 							}
 					});
 				}
