@@ -57,9 +57,9 @@
 			$('#dataTable-list').dataTable( {
 			        "oLanguage": {
 			            "sProcessing": "درحال پردازش اطلاعات",
-			            "sLengthMenu": "نمایش _MENU_ غرفه در هر صفحه",
-			            "sZeroRecords": "درکمال تاسف ، هیچ غرفه ای یافت نشد",
-			            "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ غرفه",
+			            "sLengthMenu": "نمایش _MENU_ خبر در هر صفحه",
+			            "sZeroRecords": "درکمال تاسف ، هیچ خبری یافت نشد",
+			            "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ خبر",
 			            "sInfoEmpty": "",//"هیچ گزینه ای یافت نشد",
 			            "sSearch": "جستجو",
 			            "sInfoFiltered": "(گزیده شده از مجموع  _MAX_ عدد)",
@@ -70,8 +70,8 @@
 							"sLast":     "آخرین"
 						}
 			        },
-					"order": [[ 0, "desc" ]],
-			        "aLengthMenu": [[10, 25], [10, 25]],
+					//"order": [[ 0, "desc" ]],
+			        "aLengthMenu": [[6, 25], [6, 25]],
 					"fnDrawCallback" : function(oSettings) {
 						unblockui();
 					},
@@ -96,21 +96,19 @@ body{
 	position:fixed;
 	top:0;
 	right:0;
-	background:url('images/about/home-btn.png') no-repeat 0 0;
+	background:url('images/map/home-btn.png') no-repeat 0 0;
 	background-size:cover;
 	cursor:pointer;
 	z-index:4;
 }
 table, caption, tbody, tfoot, thead, tr, th, td {direction: rtl;}
-tbody, tfoot, thead, tr, th, td {height:37px;vertical-align: middle;padding-right: 23px;}
-thead{background:#d7d7d7;color:#7c7c7c;}
+tbody, tfoot, thead, tr, th, td {vertical-align: middle;text-align:justify;}
 tbody td {
-  border-bottom: 1px solid #999999;
-  border-left: 1px solid #7c7c7c;
+  border-bottom: 0px solid #999999;
+  border-left: 0px solid #7c7c7c;
 }
-thead th {
-  border: 0px solid #7c7c7c !important;
-}
+
+
 #dataTable-list_filter input {
   border: 1px solid #848484;
   height: 34px;
@@ -124,7 +122,7 @@ font-size:0;
 #dataTable-list_filter {
   background: url("images/news/search.png") no-repeat scroll right 0 / contain  rgba(0, 0, 0, 0);
   float: none;
-  margin: 0 auto 10px;
+  margin: 0 auto 45px;
   padding-right: 39px;
   width: 300px;
   height:38px;
@@ -161,9 +159,7 @@ font-size:0;
   border:1px solid transparent!important;
   text-decoration:underline !important;
 }
-.dataTables_wrapper {
 
-}
 #header{
 	background-image:url("images/news/logo.png") ;
 	background-repeat:no-repeat;
@@ -172,6 +168,55 @@ font-size:0;
 	width: 100%;
 	height:110px;
 	margin:8px 0 11px 0;
+}
+
+
+
+
+
+
+
+.c_list {
+  /*display: inline;*/
+  display: block;
+  direction:rtl;
+}
+.c1{
+	float:right;
+	margin-bottom:8px;
+	margin-left:15px;
+	margin-right:15px;
+	margin-top:8px;
+	width:75px;
+	overflow:hidden;
+}
+.c2 {
+  height: 20px;
+  width: auto;
+  padding-top:9px;
+  padding-left:15px;
+}
+.c3 {
+  height: 60px;
+  overflow: hidden;
+  width: auto;
+  padding-left:15px;
+}
+*{
+	/*font-family:web_Yekan,tahoma !important;*/
+	font-size:13px;
+	color:#7c7c7c;
+}
+a,a:visited{text-decoration:none;color:#00afad;}
+#table-header {
+  background: none repeat scroll 0 0 #d7d7d7;
+  color: #7c7c7c;
+  height: 36px;
+  left: 0;
+  position: absolute;
+  top: 48px;
+  width: 100%;
+  z-index: 10;
 }
 
 </style>
@@ -193,104 +238,77 @@ font-size:0;
 		
 		
 		
-		
+<div id="table-header"></div>
 <table id="dataTable-list" class="display" cellspacing="0" width="100%" >
-    <thead>
+			<thead style="display:none;">
+				<tr>
+					<th>image</th>
+					<th>title</th>
+					<th>description</th>
+				</tr>
+			</thead>
+			<tbody class="dataTable-tbody">
+			
+			
         <tr>
-            <th>نام موسسه</th>
-            <th>زمینه فعالیت</th>
-            <th>سایت</th>
-            <th>آدرس غرفه</th>
-        </tr>
-    </thead>
-<!--
-    <tfoot>
-        <tr>
-            <th>نام موسسه</th>
-            <th>زمینه فعالیت</th>
-            <th>سایت</th>
-            <th>آدرس غرفه</th>
-        </tr>
-    </tfoot>
--->
-    <tbody>
-        <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="http://irdmfestival.com/images/news/1136/thumbs/thumb2_1136.jpg"  height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=1"><img src="images/test.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=1">هدف دشمن ایجاد خطای محاسباتی در مسئولان با تهدید و تطمیع است</a></td>
+            <td class="c3 c_list" >حضرت آیت الله خامنه ای رهبر معظم انقلاب اسلامی، عصر امروز (دوشنبه) در دیدار مسئولان، کارگزاران و جمعی از مدیران ارشد دستگاههای مختلف کشوری و لشگری، ضمن بیان نکاتی بسیار مهم در زمینه مسائل داخلی و خارجی، تلاش پیچیده و چند جانبه برای ایجاد اختلال در محاسبات مسئولان و دستگاههای جمهوری اسلامی را مهمترین هدف کنونی استکبار بویژه آمریکا خواندند و با اشاره به اوضاع حساس منطقه و جهان و قرار گرفتن در یک پیچ حقیقی تاریخی تأکید کردند: جمهوری اسلامی بر مبنای عناصر اصلی محاسبات عقلانی خود یعنی «اعتماد به پروردگار و سنن آفرینش» و «شناخت دشمن و بی اعتمادی به او»، راه پرافتخار خود را با تکیه بر مردم، بهره گیری از تجربه ها و تلاش و مجاهدت پیگیر برای تحقق آرمانهای ملت ادامه می دهد.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=2"><img src="images/test2.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=2">توطئه در عراق از بدو تولد شکست خورده بود/حوادث منطقه نتیجه‌ای جز تکمیل «معبر نهایی برای فتح قدس» ندارد</a></td>
+            <td class="c3 c_list" >به گفته وی، ملت ایران با پشت کردن به قدرت‌های شیطانی عالم و روی آوردن به‌ سوی خداوند متعال مورد هجمه و صف‌آرایی قدرت‌های وابسته به دستگاه‌های شیطانی شرق و غرب قرار گرفت اما همین ملت در مناطق غربی کشور با دست‌های خالی، انواع و اقسام گروهک‌های زاییده شرک و نفاق را پاک‌سازی کردند.</td>
         </tr>
         <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
-        </tr>
-        <tr>
-            <td>سروش مهر رضوان</td>
-            <td>روابط عمومی دیجیتال</td>
-            <td>smgroup.ir</td>
-            <td>ندارد</td>
+            <td class="c1 c_list" ><a href="news_content.html?id=3"><img src="images/test3.jpg" width="75" height="92" /></a></td>
+            <td class="c2 c_list" ><a href="news_content.html?id=4">جزئیات جلسه قالیباف با اعضای شورای شهر منتشر شد</a></td>
+            <td class="c3 c_list" >ضیافت افطاری شهردار تهران شب گذشته با حضور برخی اعضای شورای شهر و مسئولان شهری در سالن ایران‌زمین برگزار شد.</td>
         </tr>
 
 
