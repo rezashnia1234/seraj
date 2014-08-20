@@ -49,12 +49,6 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
 			//document.addEventListener("DOMContentLoaded", loaded, false);
-			
-			scalePage(768,"#exit-btn",true);
-			scalePage(768,"#info-btn",true);
-			scalePage(768,"#left-bg",true);
-			scalePage(768,"#right-bg",true);
-			scalePage_center(768,"#main",true);
 		}
 		var register_for_notifs;// = window.localStorage.getItem('register_for_notifs');
 		function GapFileSuccess(){
@@ -155,6 +149,12 @@
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
+			scalePage(768,"#exit-btn",true);
+			scalePage(768,"#info-btn",true);
+			scalePage(768,"#left-bg",true);
+			scalePage(768,"#right-bg",true);
+			scalePage_center(768,"#main",true);
+			unblockui();
 			
 			if ( device.platform == 'iOS' ){//Android,iOS,win7=WinCE,win8=Win32NT
 				$('#exit-btn').css({'display':'none'});
@@ -356,7 +356,7 @@
 			}
 
 			
-			unblockui();
+			
 
 		}
 		function exit() {
