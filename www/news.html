@@ -28,18 +28,19 @@
 			$.blockUI({
 				message: '<img src="images/preloader.gif"/>',
 				css: {
-					color: '#fff',
-					backgroundColor: '#fff',
+					color: '#f2f2f2',
+					backgroundColor: '#f2f2f2',
 					border: 'none'
 				},
 				overlayCSS: {
-					backgroundColor: '#fff',
+					backgroundColor: '#f2f2f2',
 					opacity: 1
 				}
 			});
 		}
-		function unblockui() {
+		function unblockui(next) {
 			$.unblockUI();
+			//next();
 		}
 // END preloader ://////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +52,7 @@
 		function onDeviceReady() {
 			FastClick.attach(document.body);
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
-			//scalePage(768,"#home-btn",true);
+			scalePage(768,"#home-btn",true);
 
 			
 			$('#dataTable-list').dataTable( {
@@ -93,7 +94,7 @@ body{
 	width:100px;
 	height:100px;
 	overflow:hidden;
-	position:fixed;
+	position:absolute;
 	top:0;
 	right:0;
 	background:url('images/map/home-btn.png') no-repeat 0 0;
@@ -219,6 +220,8 @@ a,a:visited{text-decoration:none;color:#00afad;}
 </head>
 <body onload="init()">
 	<script>blockui();</script>
+	<div style="z-index: 999; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(242, 242, 242); opacity: 1; cursor: default; position: fixed;" class="blockUI blockOverlay"></div>
+
 	<div id="temp"></div>
 	<a href="index.html">
 		<div id="home-btn"></div>

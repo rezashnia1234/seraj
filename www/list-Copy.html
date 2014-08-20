@@ -125,9 +125,9 @@
 			            "sLengthMenu": "نمایش _MENU_ مطلب در هر صفحه",
 			            "sZeroRecords": "درکمال تاسف ، هیچ مطلبی یافت نشد",
 			            "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ مطلب",
-			            "sInfoEmpty": "هیچ گزینه ای یافت نشد",
+			            "sInfoEmpty": "",//"هیچ گزینه ای یافت نشد",
 			            "sSearch": "",//"جستجو",
-			            "sInfoFiltered": "(مطالب گزیده شده از مجموع  _MAX_ عدد)",
+			            "sInfoFiltered": "(گزیده شده از مجموع  _MAX_ عدد)",
 						"oPaginate": {
 							"sFirst":    "اولین",
 							"sPrevious": "قبلی",
@@ -172,6 +172,7 @@
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);
+			scalePage(768,"#home-btn",true);
 			window.localStorage.setItem('image_list_text',"");
 			window.localStorage.setItem('download_list_text',"");
 			
@@ -317,6 +318,8 @@ a,a:visited{text-decoration:none;color:#00afad;}
 </head>
 <body onload="init()">
 	<script>blockui();</script>
+	<div style="z-index: 999; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(242, 242, 242); opacity: 1; cursor: default; position: fixed;" class="blockUI blockOverlay"></div>
+	
 	<div id="temp"></div>
 	<a href="index.html">
 		<div id="home-btn"></div>
