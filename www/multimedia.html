@@ -57,7 +57,7 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
 
-			onDeviceReady();
+			//onDeviceReady();
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
@@ -72,7 +72,7 @@
 			unblockui();
 		}
 		function play() {
-			//jQuery("#temp").html("salam : ");
+			jQuery("#temp").html("salam : ");
 			var temp_platform = "555";//device.platform;
 			temp_platform = temp_platform.toLowerCase();
 			if ( temp_platform == 'android' ){//Android,iOS,win7=WinCE,win8=Win32NT
@@ -240,6 +240,7 @@ body{
 #temp {
   z-index: 100;
   font-size: 50px;
+  float:left;
 }
 </style>
 </head>
@@ -247,7 +248,7 @@ body{
 	<script>blockui();</script>
 	<div style="z-index: 999; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(242, 242, 242); opacity: 1; cursor: default; position: fixed;" class="blockUI blockOverlay"></div>
 
-	<div id="temp"></div>
+	<div id="temp">000</div>
 	<div id="bg-left" ></div>
 	<div id="bg-right" ></div>
 	<a href="index.html">
