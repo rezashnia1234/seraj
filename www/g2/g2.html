@@ -44,7 +44,7 @@
 		function init() {			
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
-			onDeviceReady();
+			//onDeviceReady();
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);
@@ -53,7 +53,7 @@
 		
 	function StartMakeImageList(next) {
 		jQuery.ajax({
-			url: '../js/images_json.php',//window.localStorage.getItem('Root_Path')+'temp/images_json.php',//'../js/images_json.php',
+			url: window.localStorage.getItem('Root_Path')+'temp/images_json.php',//'../js/images_json.php',
 			crossDomain: true,
 			jsonpCallback: 'cb',
 			dataType: 'jsonp',
