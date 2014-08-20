@@ -234,6 +234,7 @@
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    can_we_goto_news : no');
 				//window.sessionStorage.setItem('can_we_goto_news',"yes");
 				CheckJSON();
+				CheckJSONgallery();
 			}
 						
 			function CheckJSON() {
@@ -293,6 +294,65 @@
 				//DownloadFile("http://irdmfestival.com/getjsonall/?/articles_json.php", "temp", "articles_json");
 				//DownloadFile("http://smcms.ir/tmp/articles_version.php", "temp", "articles_version");
 				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END CheckJSON');
+			}
+			
+			function CheckJSONgallery() {
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Start CheckJSONgallery');
+				function is_fileExists(result){
+					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / START is_fileExists');
+					window.sessionStorage.setItem('can_we_goto_gallery',"no");
+					if(result)
+					{
+						window.sessionStorage.setItem('can_we_goto_gallery',"yes");
+						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / is_fileExists : True');
+						var networkState = navigator.connection.type;
+						if (networkState == Connection.NONE) {
+							$('.loading').css({'display':'none'});
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / no internet BUT we have cache');
+						} else {
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / check cache lastModifiedDate');
+							$.ajax({ type: "GET",   
+									url: "http://irdmfestival.com/getjsonid/",   
+									async: false,
+									success : function(text)
+									{
+										//last_articles_version_gallery = text;
+										console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / last_articles_version_gallery : ' + text);
+										console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / getItem("last_articles_version_gallery") : ' + window.localStorage.getItem('last_articles_version_gallery'));
+										if(text == window.localStorage.getItem('last_articles_version_gallery')	)
+										{
+											console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / last_articles_version_gallery / no need to download ');
+											window.sessionStorage.setItem('can_we_goto_gallery',"yes");
+											$('.loading').css({'display':'none'});
+										}
+										else
+										{
+											console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / Start Download JSON For cache');
+											DownloadFile("http://irdmfestival.com/getjsonimages/?/images_json.php", "temp", "images_json");
+										}
+									}
+							});
+						}
+					}
+					else
+					{
+						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / is_fileExists : False');
+						var networkState = navigator.connection.type;
+						if (networkState == Connection.NONE) {
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / no internet AND no cache');
+						} else {
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    CheckJSONgallery / Start Download JSON For cache');
+							DownloadFile("http://irdmfestival.com/getjsonimages/?/images_json.php", "temp", "images_json");
+						}
+					}
+				}
+				function fileDownloadProblem(){
+						alert("we have some problem");
+				}
+				GapFile.fileExists("temp/images_json.php", is_fileExists, fileDownloadProblem);
+				//DownloadFile("http://irdmfestival.com/getjsonimages/?/articles_json.php", "temp", "articles_json");
+				//DownloadFile("http://smcms.ir/tmp/articles_version.php", "temp", "articles_version");
+				console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END CheckJSONgallery');
 			}
 
 			
@@ -417,10 +477,10 @@ body{
 
 	<div id="main">
 		<div id="links">
-			<a href="g2/g2.html"><div id="link-1th" class="menu-btn" ></div></a>
+			<a href="map.html"><div id="link-1th" class="menu-btn" ></div></a>
 			<a href="ghorfe.html"><div id="link-2th" class="menu-btn" ></div></a>
 			<a href="list-Copy.html"><div id="link-3th" class="menu-btn" ><img src="images/loading.gif" class="loading" style="float: left; margin-left: 41px; margin-top: 24px;height:15px;" /></div></a>
-			<a href="multimedia.html"><div id="link-4th" class="menu-btn" ><img src="images/loading.gif" class="loadingGalley" style="float: left; margin-left: 71px; margin-top: 24px;height:15px;" /></div></a>
+			<a href="multimedia.html"><div id="link-4th" class="menu-btn" ></div></a>
 			<a href='#' class='link' onclick="loadURL('http://www.irdmfestival.com');"  ><div id="link-5th" class="menu-btn" ></div></a>
 		</div>
 	</div>

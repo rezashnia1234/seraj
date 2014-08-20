@@ -5,13 +5,19 @@
         <title>jQuery Tiles Gallery example</title>
 
         <link rel="stylesheet" href="css/jquery-tilesgallery.css">
-        <script src="js/vendor/jquery-1.8.3.min.js"></script>
+		<script src="../js/jquery-1.8.2.min.js" type="text/javascript"></script>
 		<script src="../phonegap.js" type="text/javascript"></script>
 		<script src="../js/fastclick.js" type="text/javascript"></script>
 		<script src="../js/jquery.blockUI.js" type="text/javascript"></script>
 
         <script src="js/jquery.tiles-gallery.js"></script>
         <script>
+		image_list=new Array();
+		image_list_text="";
+		download_list=new Array();
+		download_list_text="";
+		articles = "";
+		Root_Path = "";
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 // START preloader :///////////////////////////////////////////////////////////////////////
@@ -42,13 +48,82 @@
 			}
 			function onDeviceReady() {
 				FastClick.attach(document.body);
-				
-				$("#example").tilesGallery({
-                    tileMinHeight: 200
-                });
-				
-				unblockui();
+				jQuery('#temp').queue(StartMakeImageList).delay( 1500 ).queue(MakeDataTableContent).delay( 500 ).queue(DrawDataTable);
+
 			}
+			
+		function StartMakeImageList(next) {
+			jQuery.ajax({
+				url: window.localStorage.getItem('Root_Path')+'temp/images_json.php',//'js/articles.json',
+				crossDomain: true,
+				jsonpCallback: 'cb',
+				dataType: 'jsonp',
+			})
+				.fail(function (jqXHR, textStatus, errorThrown) { console.log(textStatus, errorThrown); /*alert('Failed to load data.');*/ })
+				.done(function (data) {
+					var output='';
+					articles = data;
+					jQuery.each(data.images,function(key,val) {
+						if(val.image!="")
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    GetSavedFile +' + val.image);
+							//GetSavedFile(val.image, "temp", jQuery.md5(val.image)  );
+							
+							
+							
+						}
+						else
+						{
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    GetSavedFile no image /id=' + val.id);
+						}
+					});
+					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END GetSavedFile');
+					next();
+			});			
+		}
+		function MakeDataTableContent(next) {
+		/*
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    ASK FOR SRART DOWNLOAD');
+			StartDownload();
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END ASK FOR SRART DOWNLOAD');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    START MakeDataTableContent');
+			image_list_text = window.localStorage.getItem('image_list_text');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    image_list_text : ' +image_list_text);
+			image_list = image_list_text.split('; -,');
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    image_list : ' +image_list);
+		*/
+			var thumbnail='';
+			var output='';
+			var id_temp = 0;
+			jQuery.each(articles.images,function(key,val) {
+				id_temp = id_temp +1;
+				if(val.image)
+				{
+					//thumbnail = is_url_in_array(val.thumbnail,image_list);
+					thumbnail = val.image;
+				} 
+				else
+				{
+					thumbnail = "images/blank.png";
+				}
+				output += '<a href="#" ref="' + val.title + '">';
+				output += '<img src="' + val.image + '" id="' + id_temp + '" alt="' + val.title + '" >';
+				output += '</a>';
+			});
+
+			jQuery('#slides_wrapper').html(output);
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    END MakeDataTableContent');
+			next();
+		}
+		function DrawDataTable(next) {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    START DrawDataTable');
+
+			$("#example").tilesGallery({
+				tileMinHeight: 200
+			});
+			
+			unblockui();
+		}
         </script>
     </head>
 	<body onload="init()">
@@ -61,42 +136,10 @@
             <a href="#">
                 <img src="photos/image-001.jpg" />
             </a>
-            <a href="#">
-                <img src="photos/image-002.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-003.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-004.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-005.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-006.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-007.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-008.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-009.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-010.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-011.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-012.jpg" />
-            </a>
-            <a href="#">
-                <img src="photos/image-013.jpg" />
-            </a>
+
+			
+			
+			
         </div>        
     </body>
 </html>
