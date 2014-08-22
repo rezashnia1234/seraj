@@ -69,7 +69,9 @@
 			unblockui();
 		}
 		function play() {
-			//$("#temp").html("salam : ");
+			$("#temp").html("salam : ");
+			VideoPlayer.play('file:///android_asset/www/images/video/small.mp4');
+/*
 			var temp_platform = device.platform;
 			temp_platform = temp_platform.toLowerCase();
 			if ( temp_platform == 'android' ){//Android,iOS,win7=WinCE,win8=Win32NT
@@ -79,6 +81,7 @@
 			{
 				$('#video')[0].play();
 			}
+*/
 		}
 
 
@@ -218,12 +221,13 @@ body{
 #temp {
   z-index: 100;
   font-size: 50px;
+  float:left;
 }
 </style>
 </head>
 <body onload="init()">
 	<script>blockui();</script>
-	<div id="temp"></div>
+	<div id="temp">0000</div>
 	<div id="bg-left" ></div>
 	<div id="bg-right" ></div>
 	<a href="index.html">
