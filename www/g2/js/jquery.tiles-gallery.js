@@ -335,7 +335,7 @@
 
 	$.fn.tilesGallery = function(user_options) {
 		var defaults = {
-			margin:3,
+			margin:5,
 			responsive: true,
 			captionOnMouseOver: true,
 			captionAnimationDuration: 500,

@@ -44,22 +44,22 @@
 		function init() {			
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
-			//onDeviceReady();
+			onDeviceReady();
 		}
 		function onDeviceReady() {
 			FastClick.attach(document.body);
-			var networkState = navigator.connection.type;
-			if (networkState == Connection.NONE) {
-				unblockui();
-			} else {
+			//var networkState = navigator.connection.type;
+			//if (networkState == Connection.NONE) {
+			//	unblockui();
+			//} else {
 				jQuery('.container').css({'display':'none'});
 				jQuery('#temp').queue(StartMakeImageList).delay( 1500 ).queue(MakeDataTableContent).delay( 500 ).queue(DrawDataTable);
-			}
+			//}
 		}
 		
 	function StartMakeImageList(next) {
 		jQuery.ajax({
-			url: window.localStorage.getItem('Root_Path')+'temp/images_json.php',//'../js/images_json.php',
+			url: '../js/images_json.php',//window.localStorage.getItem('Root_Path')+'temp/images_json.php',//
 			crossDomain: true,
 			jsonpCallback: 'cb',
 			dataType: 'jsonp',
