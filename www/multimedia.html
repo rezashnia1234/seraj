@@ -72,19 +72,21 @@
 			unblockui();
 		}
 		function play() {
+/*
 			jQuery("#temp").html("salam : ");
 			VideoPlayer.play('file:///android_asset/www/images/video/small.mp4');
-/*
+*/
 			var temp_platform = device.platform;
 			temp_platform = temp_platform.toLowerCase();
 			if ( temp_platform == 'android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+				jQuery("#temp").html("salam : ");
 				VideoPlayer.play('file:///android_asset/www/images/video/small.mp4');
 			}
 			else
 			{
 				jQuery('#video')[0].play();
 			}
-*/
+
 		}
 
 
