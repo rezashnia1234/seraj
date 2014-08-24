@@ -54,7 +54,7 @@
 		function onDeviceReady() {
 			FastClick.attach(document.body);	
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
-			scalePage(768,"#home-btn",true);
+			scalePage(500,"#home-btn",true);
 			scalePage(768,"#menu-close",true);
 			scalePage(768,"#menu-open",true);
 			scalePage(768,"#bg-left",true);
@@ -91,59 +91,99 @@
 		var bt7_triger = false;
 		var bt8_triger = false;
 		function b1th() {
-			if(bt1_triger)
-				$("#L1").css({"display":"none"});
-			else
-				$("#L1").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L1").css({"display":"block"});
 			bt1_triger = !bt1_triger;
 		}
 		function b2th() {
-			if(bt2_triger)
-				$("#L2").css({"display":"none"});
-			else
-				$("#L2").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L2").css({"display":"block"});
 			bt2_triger = !bt2_triger;
 		}
 		function b3th() {
-			if(bt3_triger)
-				$("#L3").css({"display":"none"});
-			else
-				$("#L3").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L3").css({"display":"block"});
 			bt3_triger = !bt3_triger;
 		}
 		function b4th() {
-			if(bt4_triger)
-				$("#L4").css({"display":"none"});
-			else
-				$("#L4").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L4").css({"display":"block"});
 			bt4_triger = !bt4_triger;
 		}
 		function b5th() {
-			if(bt5_triger)
-				$("#L5").css({"display":"none"});
-			else
-				$("#L5").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L5").css({"display":"block"});
 			bt5_triger = !bt5_triger;
 		}
 		function b6th() {
-			if(bt6_triger)
-				$("#L6").css({"display":"none"});
-			else
-				$("#L6").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L6").css({"display":"block"});
 			bt6_triger = !bt6_triger;
 		}
 		function b7th() {
-			if(bt7_triger)
-				$("#L7").css({"display":"none"});
-			else
-				$("#L7").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L7").css({"display":"block"});
 			bt7_triger = !bt7_triger;
 		}
 		function b8th() {
-			if(bt8_triger)
-				$("#L8").css({"display":"none"});
-			else
-				$("#L8").css({"display":"block"});
+			$("#L1").css({"display":"none"});
+			$("#L2").css({"display":"none"});
+			$("#L3").css({"display":"none"});
+			$("#L4").css({"display":"none"});
+			$("#L5").css({"display":"none"});
+			$("#L6").css({"display":"none"});
+			$("#L7").css({"display":"none"});
+			$("#L8").css({"display":"none"});
+			$("#L8").css({"display":"block"});
 			bt8_triger = !bt8_triger;
 		}
 	</script>
@@ -328,10 +368,14 @@ body{
 		<div id="menu-open-close" onclick="menu_close();"></div>
 	</div>
 	<div id="wrapper">
-		<div id="scroller" width="2000px" alt="" style="max-width:100%; height:auto;z-index:1;">
-			<img id="L1" src="images/map/L1.png" width="2000px" alt="" style="max-width:100%; height:auto;z-index:2;position:absolute;top:0;left:0;display:none;" />
-			<img id="L2" src="images/map/L2.png" width="2000px" alt="" style="max-width:100%; height:auto;z-index:2;position:absolute;top:0;left:0;display:none;" />
-			<img id="image" src="images/map/metro.png" width="2000px" alt="" style="max-width:100%; height:auto;z-index:1;position:absolute;top:0;left:0;" />
+		<div id="scroller" width="2430px" alt="" style="max-width:100%; height:auto;z-index:1;">
+			<img id="L1" src="images/map/L0.png" width="2430px" alt="" style="max-width:100%; height:auto;z-index:2;position:absolute;top:0;left:0;display:none;" />
+			<img id="L2" src="images/map/L1.png" width="2430px" alt="" style="max-width:100%; height:auto;z-index:2;position:absolute;top:0;left:0;display:none;" />
+			<img id="image" src="images/map/L0.png" width="2430px" alt="" style="max-width:100%; height:auto;z-index:1;position:absolute;top:0;left:0;" />
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		</div>

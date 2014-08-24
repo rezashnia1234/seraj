@@ -20,12 +20,12 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 			document.addEventListener("deviceready", onDeviceReady, false);
 			//document.addEventListener("DOMContentLoaded", loaded, false);
-			
-			scalePage(768,"#exit-btn",true);
-			scalePage_center(768,"#main",true);
 		}
 		function onDeviceReady() {
-			FastClick.attach(document.body);	
+			FastClick.attach(document.body);
+			scalePage(768,"#exit-btn",true);
+			scalePage_center(768,"#main",true);
+			
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			
 			if ( device.platform == 'iOS' ){//Android,iOS,win7=WinCE,win8=Win32NT

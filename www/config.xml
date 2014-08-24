@@ -5,8 +5,8 @@
         version   = "1.0.0">
 		
 		
-    <name>expo</name>
-    <description>festival</description>
+    <name>رسانه های دیجیتال</name>
+    <description>نمایشگاه رسانه های دیجیتال انقلاب اسلامی</description>
     <author href="http://smgroup.ir" email="info@smgroup.ir">Sorush Mehr Rezvan</author>
 		
     <!--
